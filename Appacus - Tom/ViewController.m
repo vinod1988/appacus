@@ -13,47 +13,51 @@
 @end
 
 @implementation ViewController
-@synthesize question1;
-@synthesize question2;
-@synthesize question3;
-@synthesize question4;
-@synthesize question5;
-@synthesize answer1;
-@synthesize answer2;
-@synthesize answer3;
-@synthesize answer4;
-@synthesize answer5;
+@synthesize questions;
+@synthesize answers;
 
 int level = 2;
 
 - (IBAction)initialiseAction:(id)sender{
     NSMutableArray *chosenQuestions = [NSMutableArray array];
     NSMutableArray *answerPositions = [NSMutableArray array];
-
-    for (int i=0 ;i<5 ;i++) {
+    // Generates a unique x in (level * x), assigns to array and sets label text
+    int i = 0;
+    id question;
+    for(question in questions) {
         // Generate random question and add to chosenQuestions array
-        int question = 0;
-        while (question == 0 || [chosenQuestions containsObject:[NSNumber numberWithInt:question]]) {
-            question = arc4random() % 11;
-            question++;
+        int questionVal = 0;
+        while (questionVal == 0 || [chosenQuestions containsObject:[NSNumber numberWithInt:questionVal]]) {
+            questionVal = arc4random() % 12; // between 0 and 11
+            questionVal++;
         }
-        [chosenQuestions addObject:[NSNumber numberWithInt:question]];
-        
-        // Generate answers from random questions 
-        int answerPosition = 0;
-        while (answerPosition == 0 || [answerPositions containsObject:[NSNumber numberWithInt:answerPosition]]) {
-            answerPosition = arc4random() % 4;
-            answerPosition++;
-        }
-        [answerPositions addObject:[NSNumber numberWithInt:answerPosition]];
+        [chosenQuestions addObject:[NSNumber numberWithInt:questionVal]];
+        [question setText:[NSString stringWithFormat:@"%i x %i = ",level, questionVal]];
+        i++;
     }
     
-    //input the random questions from the chosenQuestions Array
-    [question1 setText:[NSString stringWithFormat:@"%i x %@ = ",level, [chosenQuestions objectAtIndex:0]]];
-    [question2 setText:[NSString stringWithFormat:@"%i x %@ = ",level, [chosenQuestions objectAtIndex:1]]];
-    [question3 setText:[NSString stringWithFormat:@"%i x %@ = ",level, [chosenQuestions objectAtIndex:2]]];
-    [question4 setText:[NSString stringWithFormat:@"%i x %@ = ",level, [chosenQuestions objectAtIndex:3]]];
-    [question5 setText:[NSString stringWithFormat:@"%i x %@ = ",level, [chosenQuestions objectAtIndex:4]]];
+    // Finds a unique index to randomize answer positions
+    for(i=0;i<5;i++){
+        int answerPos = arc4random() % 5; // between 0 and 4;
+        while([answerPositions containsObject:[NSNumber numberWithInt:answerPos]] && answerPos != i){
+            answerPos = arc4random() % 5; // between 0 and 4
+        }
+        [answerPositions addObject:[NSNumber numberWithInt:answerPos]];
+    }
+    // Find answerVal and set answer text
+    id answer;
+    id questionIndex;
+    int answerVal = 0;
+    i = 0;
+    
+    for(answer in answers){
+        questionIndex = [answerPositions objectAtIndex:i];
+        question = [chosenQuestions objectAtIndex: [questionIndex intValue]];
+        answerVal = level*[question intValue];
+        [answer setText:[NSString stringWithFormat:@"%i", answerVal]];
+        i++;
+    }
+
 }
 
 - (void)viewDidLoad
