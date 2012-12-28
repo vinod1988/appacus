@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3FC1C7168E472E00A5AE50 /* NSMutableArray_Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FC1C6168E472E00A5AE50 /* NSMutableArray_Shuffling.m */; };
 		4800691D168DD7B000250AB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4800691C168DD7B000250AB8 /* UIKit.framework */; };
 		4800691F168DD7B000250AB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4800691E168DD7B000250AB8 /* Foundation.framework */; };
 		48006921168DD7B000250AB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48006920168DD7B000250AB8 /* CoreGraphics.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C3FC1C4168E470800A5AE50 /* NSMutableArray_Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMutableArray_Shuffling.h; sourceTree = "<group>"; };
+		2C3FC1C6168E472E00A5AE50 /* NSMutableArray_Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArray_Shuffling.m; sourceTree = "<group>"; };
 		48006918168DD7B000250AB8 /* Appacus - Tom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appacus - Tom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4800691C168DD7B000250AB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4800691E168DD7B000250AB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +98,8 @@
 				48006937168DD7B000250AB8 /* ViewController.h */,
 				48006938168DD7B000250AB8 /* ViewController.m */,
 				48006923168DD7B000250AB8 /* Supporting Files */,
+				2C3FC1C4168E470800A5AE50 /* NSMutableArray_Shuffling.h */,
+				2C3FC1C6168E472E00A5AE50 /* NSMutableArray_Shuffling.m */,
 			);
 			path = "Appacus - Tom";
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				48006929168DD7B000250AB8 /* main.m in Sources */,
 				4800692D168DD7B000250AB8 /* AppDelegate.m in Sources */,
 				48006939168DD7B000250AB8 /* ViewController.m in Sources */,
+				2C3FC1C7168E472E00A5AE50 /* NSMutableArray_Shuffling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +312,7 @@
 				4800693E168DD7B000250AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

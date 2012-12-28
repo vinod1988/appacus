@@ -12,25 +12,8 @@
 
 -(IBAction)initialiseAction:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *question1;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *questions;
 
-@property (weak, nonatomic) IBOutlet UILabel *question2;
-
-@property (weak, nonatomic) IBOutlet UILabel *question3;
-
-@property (weak, nonatomic) IBOutlet UILabel *question4;
-
-@property (weak, nonatomic) IBOutlet UILabel *question5;
-
-@property (weak, nonatomic) IBOutlet UILabel *answer1;
-
-@property (weak, nonatomic) IBOutlet UILabel *answer2;
-
-@property (weak, nonatomic) IBOutlet UILabel *answer3;
-
-@property (weak, nonatomic) IBOutlet UILabel *answer4;
-
-@property (weak, nonatomic) IBOutlet UILabel *answer5;
-
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *answers;
 
 @end
