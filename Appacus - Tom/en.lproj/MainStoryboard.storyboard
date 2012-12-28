@@ -187,7 +187,7 @@
                             <constraint firstItem="XT2-vc-1gC" firstAttribute="trailing" secondItem="qY4-tY-oKA" secondAttribute="trailing" type="default" id="0y5-Mu-YwO"/>
                             <constraint firstItem="R3A-4K-xNq" firstAttribute="leading" secondItem="Jfe-e1-sVl" secondAttribute="leading" type="default" id="1Re-QU-eqX"/>
                             <constraint firstItem="XV1-bN-daW" firstAttribute="leading" secondItem="9Xb-JV-Kms" secondAttribute="leading" type="default" id="1oU-dB-JIM"/>
-                            <constraint firstItem="DE2-RN-egJ" firstAttribute="baseline" secondItem="oUe-1z-sRa" secondAttribute="baseline" type="default" id="2bD-i3-oJx"/>
+                            <constraint firstItem="DE2-RN-egJ" firstAttribute="baseline" secondItem="oUe-1z-sRa" secondAttribute="baseline" type="user" id="2bD-i3-oJx"/>
                             <constraint firstItem="LcQ-i2-LI6" firstAttribute="trailing" secondItem="CJD-Qw-AZx" secondAttribute="trailing" type="default" id="3BT-nb-9oD"/>
                             <constraint firstItem="dbj-Cz-wtC" firstAttribute="top" secondItem="5" secondAttribute="top" constant="27" id="3Cm-jR-PMJ"/>
                             <constraint firstItem="wGa-dV-mhc" firstAttribute="top" secondItem="XV1-bN-daW" secondAttribute="top" type="default" id="45j-eK-0VZ"/>
@@ -276,6 +276,11 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="answer1" destination="pbE-IM-XPN" id="zEi-bX-a36"/>
+                        <outlet property="answer2" destination="nl6-gd-Yac" id="Qlm-mK-7rv"/>
+                        <outlet property="answer3" destination="DE2-RN-egJ" id="9aW-U9-xFq"/>
+                        <outlet property="answer4" destination="Jfe-e1-sVl" id="iJt-H4-yki"/>
+                        <outlet property="answer5" destination="R3A-4K-xNq" id="lP9-yS-JXh"/>
                         <outlet property="question1" destination="GpQ-K5-lig" id="OeV-xJ-Wk6"/>
                         <outlet property="question2" destination="kkK-St-OTI" id="7we-sL-Brv"/>
                         <outlet property="question3" destination="UzY-e8-iJr" id="gE6-Tu-gRT"/>
@@ -293,22 +298,6 @@
         <image name="Background.png" width="1024" height="768"/>
         <image name="QuestionBox.png" width="347" height="133"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="initialiseAction:"/>
-                <relationship kind="outlet" name="question1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="question2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="question3" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="question4" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="question5" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

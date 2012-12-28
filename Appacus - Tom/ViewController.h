@@ -22,4 +22,15 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *question5;
 
+@property (weak, nonatomic) IBOutlet UILabel *answer1;
+
+@property (weak, nonatomic) IBOutlet UILabel *answer2;
+
+@property (weak, nonatomic) IBOutlet UILabel *answer3;
+
+@property (weak, nonatomic) IBOutlet UILabel *answer4;
+
+@property (weak, nonatomic) IBOutlet UILabel *answer5;
+
+
 @end
