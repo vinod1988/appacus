@@ -25,7 +25,7 @@ int level = 2;
     int i = 0;
     id question;
     for(question in questions) {
-        // Generate random question and add to chosenQuestions array
+        // Generate random question, check that it's unique and add to chosenQuestions array
         int questionVal = 0;
         while (questionVal == 0 || [chosenQuestions containsObject:[NSNumber numberWithInt:questionVal]]) {
             questionVal = arc4random() % 12; // between 0 and 11
