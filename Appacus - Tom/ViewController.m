@@ -37,29 +37,42 @@ int level = 2;
     }
     
     // Finds a unique index to randomize answer positions
-    for(i=0;i<5;i++){
+    for(i=0;i<[questions count];i++){
         int answerPos = arc4random() % 5; // between 0 and 4;
-        while([answerPositions containsObject:[NSNumber numberWithInt:answerPos]] && answerPos != i){
+        int loopCount = 1; // Variable to ensure loop doesn't get stuck
+        while([answerPositions containsObject:[NSNumber numberWithInt:answerPos]] || answerPos == i){
             answerPos = arc4random() % 5; // between 0 and 4
+            loopCount++;
+            // If loop runs more than 2 * questionCount, and answerPosition is available, go with it anyway.
+            // This means the answer position is the same as question position
+            // This functionality prevents same-row questions and answers *most* of the time
+            // Without this, the system could run out positions _other_ than a same-row, and loop forever
+            if(loopCount > ([questions count]*2) && ![answerPositions containsObject:[NSNumber numberWithInt:answerPos]]){
+                break;
+            }
         }
         // Add to answerPos to answerPositions array
         // This gives us an array of keys 0-4 (question position) with values 0-4 (answer position)
         [answerPositions addObject:[NSNumber numberWithInt:answerPos]];
     }
-    // Find answerVal and set answer text
+    
+    // Loop through questions, calculate answers and update labels
     id answer;
     id answerIndex;
     int answerVal = 0;
-    int answerCounter = 0;
+    int questionCounter = 0;
     
-    for(answer in answers){
-        // Find the answer position for question at answerCounter
-        answerIndex = [answerPositions objectAtIndex:answerCounter];
-        // Find question
-        question = [chosenQuestions objectAtIndex: [answerIndex intValue]];
+    for(i=0;i<[questions count];i++){
+        // Find the question and answer position
+        question = [chosenQuestions objectAtIndex:questionCounter];
+        answerIndex = [answerPositions objectAtIndex:questionCounter];
+        // Work out the answer
         answerVal = level*[question intValue];
+        // Find the answer element and update it's text
+        answer = [answers objectAtIndex:[answerIndex intValue]];
         [answer setText:[NSString stringWithFormat:@"%i", answerVal]];
-        answerCounter++;
+        // Move on to the next question
+        questionCounter++;
     }
 
 }
