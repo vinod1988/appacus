@@ -12,8 +12,8 @@
 
 -(IBAction)initialiseAction:(id)sender;
 
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *questions;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *questionLabels;
 
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *answers;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *answerLabels;
 
 @end
