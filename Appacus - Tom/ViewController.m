@@ -42,20 +42,24 @@ int level = 2;
         while([answerPositions containsObject:[NSNumber numberWithInt:answerPos]] && answerPos != i){
             answerPos = arc4random() % 5; // between 0 and 4
         }
+        // Add to answerPos to answerPositions array
+        // This gives us an array of keys 0-4 (question position) with values 0-4 (answer position)
         [answerPositions addObject:[NSNumber numberWithInt:answerPos]];
     }
     // Find answerVal and set answer text
     id answer;
-    id questionIndex;
+    id answerIndex;
     int answerVal = 0;
-    i = 0;
+    int answerCounter = 0;
     
     for(answer in answers){
-        questionIndex = [answerPositions objectAtIndex:i];
-        question = [chosenQuestions objectAtIndex: [questionIndex intValue]];
+        // Find the answer position for question at answerCounter
+        answerIndex = [answerPositions objectAtIndex:answerCounter];
+        // Find question
+        question = [chosenQuestions objectAtIndex: [answerIndex intValue]];
         answerVal = level*[question intValue];
         [answer setText:[NSString stringWithFormat:@"%i", answerVal]];
-        i++;
+        answerCounter++;
     }
 
 }
