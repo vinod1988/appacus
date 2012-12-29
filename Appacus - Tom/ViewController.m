@@ -39,7 +39,7 @@ int level = 2;
     // Finds a unique index to randomize answer positions
     for(i=0;i<[questions count];i++){
         int answerPos = arc4random() % 5; // between 0 and 4;
-        int loopCount = 1; // Variable to ensure loop doesn't get stuck
+        int loopCount = 0; // Variable to ensure loop doesn't get stuck
         while([answerPositions containsObject:[NSNumber numberWithInt:answerPos]] || answerPos == i){
             answerPos = arc4random() % 5; // between 0 and 4
             loopCount++;
@@ -47,7 +47,7 @@ int level = 2;
             // This means the answer position is the same as question position
             // This functionality prevents same-row questions and answers *most* of the time
             // Without this, the system could run out positions _other_ than a same-row, and loop forever
-            if(loopCount > ([questions count]*2) && ![answerPositions containsObject:[NSNumber numberWithInt:answerPos]]){
+            if(loopCount > ([questions count]*4) && ![answerPositions containsObject:[NSNumber numberWithInt:answerPos]]){
                 break;
             }
         }
