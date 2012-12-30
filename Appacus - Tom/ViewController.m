@@ -40,8 +40,8 @@
         int position = [answerButtons indexOfObject:button]; // Get button position
         id answer = [[game answers] objectAtIndex:position]; // Use button position as the index of answer in answers array
         
-        // Has this answer been placed already?
-        if(![[game userAnswers] containsObject:answer]){
+        // Is this answer in hand, or been placed already?
+        if([answer intValue] != [game heldAnswer] && ![[game userAnswers] containsObject:answer]){
             // Highlight button colour
             [button setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
             // Reset currently held answer to it's original position if available
@@ -71,7 +71,6 @@
             // Check if this target has already been used
             if([[game userAnswers] objectAtIndex:position] == (id)[NSNull null]){
                 // Set that targetButton to the answer and remove the answerButton
-                NSLog(@"%i", answer);
                 [self setTarget:targetButton withAnswer:answerButton]; 
                 [game setHeldAnswer:0]; // Reset held answer
             }
