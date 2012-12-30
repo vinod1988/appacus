@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CB1F65F168FAC1800293F79 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1F65E168FAC1800293F79 /* GameController.m */; };
 		4800691D168DD7B000250AB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4800691C168DD7B000250AB8 /* UIKit.framework */; };
 		4800691F168DD7B000250AB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4800691E168DD7B000250AB8 /* Foundation.framework */; };
 		48006921168DD7B000250AB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48006920168DD7B000250AB8 /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CB1F65D168FAC1800293F79 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		2CB1F65E168FAC1800293F79 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		48006918168DD7B000250AB8 /* Appacus - Tom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appacus - Tom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4800691C168DD7B000250AB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4800691E168DD7B000250AB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -94,6 +97,8 @@
 				4800692B168DD7B000250AB8 /* AppDelegate.h */,
 				4800692C168DD7B000250AB8 /* AppDelegate.m */,
 				48006934168DD7B000250AB8 /* MainStoryboard.storyboard */,
+				2CB1F65D168FAC1800293F79 /* GameController.h */,
+				2CB1F65E168FAC1800293F79 /* GameController.m */,
 				48006937168DD7B000250AB8 /* ViewController.h */,
 				48006938168DD7B000250AB8 /* ViewController.m */,
 				48006923168DD7B000250AB8 /* Supporting Files */,
@@ -192,6 +197,7 @@
 				48006929168DD7B000250AB8 /* main.m in Sources */,
 				4800692D168DD7B000250AB8 /* AppDelegate.m in Sources */,
 				48006939168DD7B000250AB8 /* ViewController.m in Sources */,
+				2CB1F65F168FAC1800293F79 /* GameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
