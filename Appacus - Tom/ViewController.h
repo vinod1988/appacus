@@ -7,13 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameController.h"
 
 @interface ViewController : UIViewController
 
--(IBAction)initialiseAction:(id)sender;
-
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *questionLabels;
 
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *answerLabels;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *targetButtons;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *answerButtons;
+
+-(IBAction)touchAnswer:(id)sender;
+
+-(IBAction)touchTarget:(id)sender;
+
+-(IBAction)checkAnswers:(id)sender;
 
 @end
+
+GameController *game;
+
