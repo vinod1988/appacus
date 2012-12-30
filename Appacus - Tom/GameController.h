@@ -18,6 +18,7 @@
     int numQuestions;
     int heldAnswer;
     int total;
+    BOOL complete;
 }
 
 @property (nonatomic, retain) NSMutableArray *questions;
@@ -27,8 +28,12 @@
 @property int numQuestions;
 @property int heldAnswer;
 @property int total;
+@property BOOL complete;
 
--(void)resetGame;
+-(void)repopulateGame;
+-(int)numAnswered;
+-(int)calculateAnswer:(int)question;
 -(int)calculateScore;
+-(void)notifyScore;
 
 @end
