@@ -17,21 +17,13 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *answerButtons;
 
--(IBAction)initialiseAction:(id)sender;
-
 -(IBAction)touchAnswer:(id)sender;
 
 -(IBAction)touchTarget:(id)sender;
 
 -(IBAction)checkAnswers:(id)sender;
 
-@property (strong) NSMutableArray *questions;
-@property (strong) NSMutableArray *userAnswers;
-
 @end
-
-int level = 2;
-int held_answer = 0;
 
 GameController *game;
 

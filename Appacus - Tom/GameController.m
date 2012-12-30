@@ -16,6 +16,7 @@
 @synthesize numQuestions;
 @synthesize heldAnswer;
 @synthesize total;
+@synthesize complete;
 
 - (id)init
 {
@@ -30,16 +31,18 @@
         numQuestions = 0;
         heldAnswer = 0;
         total = 0;
+        complete = false;
     }
     
     return self;
 }
 
-- (void)resetGame{
+- (void)repopulateGame{
     [questions removeAllObjects];
     [userAnswers removeAllObjects];
     heldAnswer = 0;
     total = 0;
+    complete = false;
     if(numQuestions > 0){
         for (int i = 0; i < numQuestions; ++i)
         {
@@ -50,6 +53,21 @@
     [self generateAnswers];
 }
 
+- (int)numAnswered{
+    int num = 0;
+    id userAnswer;
+    for(userAnswer in userAnswers){
+        if(userAnswer != [NSNull null]){
+            num++;
+        }
+    }
+    return num;
+}
+
+- (int)calculateAnswer:(int)question{
+    return level * question;
+}
+
 - (int)calculateScore{
     id question;
     id userAnswer;
@@ -58,11 +76,21 @@
     for(int i=0;i<numQuestions;i++){
         question = [questions objectAtIndex:i];
         userAnswer = [userAnswers objectAtIndex:i];
-        if(userAnswer != (id)[NSNull null] && level * [question intValue] == [userAnswer intValue]){
+        if(userAnswer != (id)[NSNull null] && [self calculateAnswer:[question intValue]] == [userAnswer intValue]){
             total++;
         }
     }
     return total;
+}
+
+- (void)notifyScore{
+    id alertMessage = [NSString stringWithFormat:@"You scored %i out of %i", total, numQuestions];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well Done!"
+                                                    message:alertMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)generateQuestions{
