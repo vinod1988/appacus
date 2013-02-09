@@ -25,8 +25,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *livesLabel;
 
+@property int gameLevel;
+
 @property BOOL userNotified;
 
+-(void)initialise;
 
 -(IBAction)touchAnswer:(id)sender;
 
@@ -35,6 +38,8 @@
 -(IBAction)touchDownTarget:(id)sender;
 
 -(IBAction)roundAction:(id)sender;
+
+-(IBAction)backAction:(id)sender;
 
 @end
 

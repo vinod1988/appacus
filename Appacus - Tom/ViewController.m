@@ -21,20 +21,20 @@
 @synthesize scoreLabel;
 @synthesize livesLabel;
 @synthesize userNotified;
+@synthesize gameLevel;
 
 // Run once scene (viewController) has loaded
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    [self initElementArrays];
-    
-    // Initialise GameController object if not initialized
-    if(![game isKindOfClass:[GameController class]]){
-        // Reset the game
-        [self resetGame];
-    }
+  [super viewDidLoad];
+  [self initialise];
 }
+
+- (void)initialise{
+  [self initElementArrays];
+  [self resetGame];
+}
+
 
 // 'Hold' the answer if it hasn't been placed already
 - (IBAction)touchAnswer:(id)sender
@@ -140,6 +140,10 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (IBAction)backAction:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)checkAnswers{
@@ -258,7 +262,7 @@
 
 - (void)resetGame{
   game = [[GameController alloc] init];
-  [game setUserTimesTable:2];
+  [game setUserTimesTable:gameLevel];
   [game setNumQuestions:5];
   
   [game repopulateGame];

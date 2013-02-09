@@ -17,12 +17,13 @@
 		4800692F168DD7B000250AB8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4800692E168DD7B000250AB8 /* Default.png */; };
 		48006931168DD7B000250AB8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006930168DD7B000250AB8 /* Default@2x.png */; };
 		48006933168DD7B000250AB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006932168DD7B000250AB8 /* Default-568h@2x.png */; };
-		48006936168DD7B000250AB8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48006934168DD7B000250AB8 /* MainStoryboard.storyboard */; };
 		48006939168DD7B000250AB8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48006938168DD7B000250AB8 /* ViewController.m */; };
 		48006940168DDC3000250AB8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4800693F168DDC3000250AB8 /* Background.png */; };
 		48006943168DDCB000250AB8 /* AnswerBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006941168DDCB000250AB8 /* AnswerBox.png */; };
 		48006944168DDCB000250AB8 /* QuestionBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006942168DDCB000250AB8 /* QuestionBox.png */; };
 		48006957168F42E400250AB8 /* TransparentAnswerBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006956168F42E400250AB8 /* TransparentAnswerBox.png */; };
+		48CC5CB716C6F38900D169EE /* TableSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CC5CB616C6F38900D169EE /* TableSelectController.m */; };
+		48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBB16C7055B00D169EE /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,13 +42,15 @@
 		4800692E168DD7B000250AB8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		48006930168DD7B000250AB8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		48006932168DD7B000250AB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		48006935168DD7B000250AB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		48006937168DD7B000250AB8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		48006938168DD7B000250AB8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4800693F168DDC3000250AB8 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		48006941168DDCB000250AB8 /* AnswerBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnswerBox.png; sourceTree = "<group>"; };
 		48006942168DDCB000250AB8 /* QuestionBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionBox.png; sourceTree = "<group>"; };
 		48006956168F42E400250AB8 /* TransparentAnswerBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TransparentAnswerBox.png; sourceTree = "<group>"; };
+		48CC5CB516C6F38900D169EE /* TableSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSelectController.h; sourceTree = "<group>"; };
+		48CC5CB616C6F38900D169EE /* TableSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSelectController.m; sourceTree = "<group>"; };
+		48CC5CBC16C7055B00D169EE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,14 +97,16 @@
 		48006922168DD7B000250AB8 /* Appacus - Tom */ = {
 			isa = PBXGroup;
 			children = (
+				48CC5CBB16C7055B00D169EE /* MainStoryboard.storyboard */,
 				4800692B168DD7B000250AB8 /* AppDelegate.h */,
 				4800692C168DD7B000250AB8 /* AppDelegate.m */,
-				48006934168DD7B000250AB8 /* MainStoryboard.storyboard */,
 				2CB1F65D168FAC1800293F79 /* GameController.h */,
 				2CB1F65E168FAC1800293F79 /* GameController.m */,
 				48006937168DD7B000250AB8 /* ViewController.h */,
 				48006938168DD7B000250AB8 /* ViewController.m */,
 				48006923168DD7B000250AB8 /* Supporting Files */,
+				48CC5CB516C6F38900D169EE /* TableSelectController.h */,
+				48CC5CB616C6F38900D169EE /* TableSelectController.m */,
 			);
 			path = "Appacus - Tom";
 			sourceTree = "<group>";
@@ -179,11 +184,11 @@
 				4800692F168DD7B000250AB8 /* Default.png in Resources */,
 				48006931168DD7B000250AB8 /* Default@2x.png in Resources */,
 				48006933168DD7B000250AB8 /* Default-568h@2x.png in Resources */,
-				48006936168DD7B000250AB8 /* MainStoryboard.storyboard in Resources */,
 				48006940168DDC3000250AB8 /* Background.png in Resources */,
 				48006943168DDCB000250AB8 /* AnswerBox.png in Resources */,
 				48006944168DDCB000250AB8 /* QuestionBox.png in Resources */,
 				48006957168F42E400250AB8 /* TransparentAnswerBox.png in Resources */,
+				48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +203,7 @@
 				4800692D168DD7B000250AB8 /* AppDelegate.m in Sources */,
 				48006939168DD7B000250AB8 /* ViewController.m in Sources */,
 				2CB1F65F168FAC1800293F79 /* GameController.m in Sources */,
+				48CC5CB716C6F38900D169EE /* TableSelectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,10 +218,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		48006934168DD7B000250AB8 /* MainStoryboard.storyboard */ = {
+		48CC5CBB16C7055B00D169EE /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				48006935168DD7B000250AB8 /* en */,
+				48CC5CBC16C7055B00D169EE /* en */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
