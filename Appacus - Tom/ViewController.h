@@ -19,9 +19,13 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *answerButtons;
 
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *livesLabel;
+
+@property BOOL userNotified;
 
 
 -(IBAction)touchAnswer:(id)sender;

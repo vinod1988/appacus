@@ -17,8 +17,10 @@
 @synthesize targetButtons;
 @synthesize answerLabels;
 @synthesize answerButtons;
+@synthesize levelLabel;
 @synthesize scoreLabel;
 @synthesize livesLabel;
+@synthesize userNotified;
 
 // Run once scene (viewController) has loaded
 - (void)viewDidLoad
@@ -92,31 +94,44 @@
 - (IBAction)roundAction:(id)sender{
     
     if([game numAnswered] == [game numQuestions]){
-        UIButton *checkButton = (UIButton *)sender;
-        
+      UIButton *checkButton = (UIButton *)sender;
+      
+      if(userNotified){
         if([game gameOver]){
           // Button intended to reset game
           [self resetGame];
+          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+        }else if([game gameComplete]){
+          [self nextLevel];
+          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+        }else if([game levelComplete]){
+          [self nextLevel];
           [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
         }else if([game roundComplete]){
           // Button intended to retry round
           [self resetRound];
           [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
-        }else{
-          // Button intended to check answers
-          [self checkAnswers];
-          
-          if([game gameOver]){
-            // Warn of game over and update button to reset
-            [self notifyGameOver];
-            [checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
-          }else{
-            // Notify score and allow to retry round
-            [self notifyScore];
-            [checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
-          }
-          
         }
+        userNotified = false;
+      }else{
+        // Button intended to check answers
+        [self checkAnswers];
+        if([game gameOver]){
+          // Warn of game over and update button to reset
+          [self notifyGameOver];
+          [checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
+        }else if([game levelComplete]){
+          // Continue to the next level!
+          [self notifyLevelComplete];
+          [checkButton setTitle:[NSString stringWithFormat:@"Next Level"] forState:UIControlStateNormal];
+        }else{
+          // Notify score and allow to retry round
+          [self notifyFailure];
+          [checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
+        }
+        userNotified = true;
+      }
+      
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please attempt all questions"
                                                         message:@"Please attempt all questions before checking your answers"
@@ -156,10 +171,32 @@
   
 }
 
-- (void)notifyScore{
+- (void)notifyGameComplete{
+  
+  id alertMessage = [NSString stringWithFormat:@"You've completed all the levels"];
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well done!"
+                                                  message:alertMessage
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
+}
+
+- (void)notifyLevelComplete{
+  
+  id alertMessage = [NSString stringWithFormat:@"You answered every question correctly"];
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well done!"
+                                                  message:alertMessage
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
+}
+
+- (void)notifyFailure{
   
     id alertMessage = [NSString stringWithFormat:@"You scored %i out of %i", [game roundScore], [game numQuestions]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well Done!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again"
                                                     message:alertMessage
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
@@ -214,9 +251,14 @@
     }
 }
 
+- (void)nextLevel{
+  [game setUserLevel:[game userLevel]+1];
+  [self resetRound];
+}
+
 - (void)resetGame{
   game = [[GameController alloc] init];
-  [game setUserLevel:1];
+  [game setUserTimesTable:2];
   [game setNumQuestions:5];
   
   [game repopulateGame];
@@ -225,14 +267,13 @@
 
 // (Re)set the round and populate the game elements with corresponding answers and questions
 - (void)resetRound{
-    
   [game repopulateGame];
   [self resetView];
-  
 }
 
 - (void)resetView{
   
+  [levelLabel setText:[NSString stringWithFormat:@"%i",[game userLevel]]];
   [livesLabel setText:[NSString stringWithFormat:@"%i",[game userLives]]];
   [scoreLabel setText:[NSString stringWithFormat:@"%i",[game userScore]]];
   
@@ -240,9 +281,8 @@
   for(int i=0;i<[game numQuestions];i++) {
     // Set questionLabel text
     id questionLabel = [questionLabels objectAtIndex:i];
-    id multiplier = [[game questionLevels] objectAtIndex:i];
     id question = [[game questions] objectAtIndex:i];
-    [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ",[multiplier intValue], [question intValue]]];
+    [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ", [game userTimesTable], [question intValue]]];
     
     // Reset target button style
     id targetButton = [targetButtons objectAtIndex:i];
