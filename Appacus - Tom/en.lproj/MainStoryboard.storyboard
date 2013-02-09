@@ -60,19 +60,27 @@
                                     <segue destination="2" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="5cD-IZ-sxt"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="osx-b1-Unw">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="554" id="c6z-P7-pq1"/>
+                                    <constraint firstAttribute="height" constant="161" id="k5U-Qw-8pA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tcd-hd-NwT" firstAttribute="trailing" secondItem="yQG-QJ-KB0" secondAttribute="trailing" type="default" id="D3k-Ph-QDZ"/>
                             <constraint firstItem="NQR-Rp-dBh" firstAttribute="top" secondItem="ga9-Uk-JB9" secondAttribute="top" type="default" id="ETB-Ua-KPC"/>
-                            <constraint firstItem="yQG-QJ-KB0" firstAttribute="top" secondItem="ga9-Uk-JB9" secondAttribute="top" constant="258" id="FYI-dG-hZ9"/>
-                            <constraint firstItem="nGu-aE-I7G" firstAttribute="centerX" secondItem="NQR-Rp-dBh" secondAttribute="centerX" type="default" id="HfO-Wg-1yy"/>
+                            <constraint firstItem="nGu-aE-I7G" firstAttribute="centerX" secondItem="NQR-Rp-dBh" secondAttribute="centerX" type="default" id="MQc-GR-LqG"/>
+                            <constraint firstItem="osx-b1-Unw" firstAttribute="centerX" secondItem="yQG-QJ-KB0" secondAttribute="centerX" type="default" id="Ozc-YN-1HU"/>
+                            <constraint firstAttribute="bottom" secondItem="tcd-hd-NwT" secondAttribute="bottom" constant="278" id="Stx-dG-DTZ"/>
                             <constraint firstItem="nGu-aE-I7G" firstAttribute="leading" secondItem="tcd-hd-NwT" secondAttribute="leading" type="default" id="TpR-hf-psT"/>
+                            <constraint firstAttribute="bottom" secondItem="nGu-aE-I7G" secondAttribute="bottom" constant="191" id="gCU-cC-XTZ"/>
                             <constraint firstItem="tcd-hd-NwT" firstAttribute="leading" secondItem="yQG-QJ-KB0" secondAttribute="leading" type="default" id="hJs-w1-8DU"/>
                             <constraint firstItem="NQR-Rp-dBh" firstAttribute="leading" secondItem="ga9-Uk-JB9" secondAttribute="leading" type="default" id="j7u-GW-1im"/>
                             <constraint firstItem="nGu-aE-I7G" firstAttribute="trailing" secondItem="tcd-hd-NwT" secondAttribute="trailing" type="default" id="kjz-NZ-eIf"/>
-                            <constraint firstAttribute="bottom" secondItem="nGu-aE-I7G" secondAttribute="bottom" constant="276" id="mdG-ou-dXQ"/>
-                            <constraint firstItem="tcd-hd-NwT" firstAttribute="top" secondItem="ga9-Uk-JB9" secondAttribute="top" constant="342" id="rwu-Wh-mnt"/>
+                            <constraint firstItem="osx-b1-Unw" firstAttribute="top" secondItem="ga9-Uk-JB9" secondAttribute="top" constant="95" id="thj-pD-Xt0"/>
+                            <constraint firstItem="yQG-QJ-KB0" firstAttribute="top" secondItem="ga9-Uk-JB9" secondAttribute="top" constant="343" id="x7k-6j-849"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -568,6 +576,7 @@
         <image name="Background.png" width="1024" height="768"/>
         <image name="QuestionBox.png" width="347" height="133"/>
         <image name="TransparentAnswerBox.png" width="152" height="131"/>
+        <image name="logo.png" width="1902" height="556"/>
     </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">

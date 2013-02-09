@@ -24,6 +24,7 @@
 		48006957168F42E400250AB8 /* TransparentAnswerBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006956168F42E400250AB8 /* TransparentAnswerBox.png */; };
 		48CC5CB716C6F38900D169EE /* TableSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CC5CB616C6F38900D169EE /* TableSelectController.m */; };
 		48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBB16C7055B00D169EE /* MainStoryboard.storyboard */; };
+		48CC5CBF16C70C1D00D169EE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBE16C70C1D00D169EE /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		48CC5CB516C6F38900D169EE /* TableSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSelectController.h; sourceTree = "<group>"; };
 		48CC5CB616C6F38900D169EE /* TableSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSelectController.m; sourceTree = "<group>"; };
 		48CC5CBC16C7055B00D169EE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		48CC5CBE16C70C1D00D169EE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				4800693F168DDC3000250AB8 /* Background.png */,
 				48006956168F42E400250AB8 /* TransparentAnswerBox.png */,
+				48CC5CBE16C70C1D00D169EE /* logo.png */,
 				48006941168DDCB000250AB8 /* AnswerBox.png */,
 				48006942168DDCB000250AB8 /* QuestionBox.png */,
 				48006924168DD7B000250AB8 /* Appacus - Tom-Info.plist */,
@@ -189,6 +192,7 @@
 				48006944168DDCB000250AB8 /* QuestionBox.png in Resources */,
 				48006957168F42E400250AB8 /* TransparentAnswerBox.png in Resources */,
 				48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */,
+				48CC5CBF16C70C1D00D169EE /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
