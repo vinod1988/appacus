@@ -10,9 +10,11 @@
 
 @implementation GameController
 @synthesize questions;
+@synthesize questionLevels;
 @synthesize answers;
 @synthesize userAnswers;
-@synthesize level;
+@synthesize levels;
+@synthesize userLevel;
 @synthesize numQuestions;
 @synthesize heldAnswer;
 @synthesize roundScore;
@@ -23,39 +25,46 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self)
-    {
-        // Initialization variables.
-        questions = [[NSMutableArray alloc] init];
-        answers = [[NSMutableArray alloc] init];
-        userAnswers = [[NSMutableArray alloc] init];
-        level = 0;
-        numQuestions = 0;
-        heldAnswer = 0;
-        roundScore = 0;
-        userScore = 0;
-        userLives = 3;
-        roundComplete = false;
-    }
+  self = [super init];
+  if (self){
+    // Initialization variables.
+    questions = [[NSMutableArray alloc] init];
+    questionLevels = [[NSMutableArray alloc] init];
+    answers = [[NSMutableArray alloc] init];
+    userAnswers = [[NSMutableArray alloc] init];
+    levels = [[NSMutableArray alloc] init];
+    userLevel = 1;
+    numQuestions = 0;
+    heldAnswer = 0;
+    roundScore = 0;
+    userScore = 0;
+    userLives = 3;
+    roundComplete = false;
     
-    return self;
+    // Load levels
+    [levels addObject:[NSArray arrayWithObjects: [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:4], [NSNumber numberWithInteger:6], nil]];
+    
+    [levels addObject:[NSArray arrayWithObjects: [NSNumber numberWithInteger:3], [NSNumber numberWithInteger:5], [NSNumber numberWithInteger:8], nil]];
+    
+    [levels addObject:[NSArray arrayWithObjects: [NSNumber numberWithInteger:7], [NSNumber numberWithInteger:9], nil]];
+  }
+  return self;
 }
 
 - (void)repopulateGame{
-    [questions removeAllObjects];
-    [answers removeAllObjects];
-    [userAnswers removeAllObjects];
-    heldAnswer = 0;
-    roundComplete = false;
-    if(numQuestions > 0){
-        for (int i = 0; i < numQuestions; ++i)
-        {
-            [userAnswers addObject:[NSNull null]];
-        }
+  [questions removeAllObjects];
+  [questionLevels removeAllObjects];
+  [answers removeAllObjects];
+  [userAnswers removeAllObjects];
+  heldAnswer = 0;
+  roundComplete = false;
+  if(numQuestions > 0){
+    for (int i = 0; i < numQuestions; ++i){
+      [userAnswers addObject:[NSNull null]];
     }
-    [self generateQuestions];
-    [self generateAnswers];
+  }
+  [self generateQuestions];
+  [self generateAnswers];
 }
 
 - (int)numAnswered{
@@ -69,8 +78,10 @@
     return num;
 }
 
-- (int)calculateAnswer:(int)question{
-    return level * question;
+- (int)calculateAnswer:(int)questionIndex{
+  int question = [[questions objectAtIndex:questionIndex] integerValue];
+  int multiplier = [[questionLevels objectAtIndex:questionIndex] integerValue];
+    return multiplier * question;
 }
 
 - (int)calculateScore{
@@ -80,7 +91,7 @@
     for(int i=0;i<numQuestions;i++){
         question = [questions objectAtIndex:i];
         userAnswer = [userAnswers objectAtIndex:i];
-        if(userAnswer != (id)[NSNull null] && [self calculateAnswer:[question intValue]] == [userAnswer intValue]){
+        if(userAnswer != (id)[NSNull null] && [self calculateAnswer:i] == [userAnswer intValue]){
             total++;
         }
     }
@@ -117,29 +128,34 @@
 }
 
 - (void)generateAnswers{
-    // Generate null answers initially
+    // Generate null levels and answers initially
     for (int i = 0; i < numQuestions; ++i){
         [answers addObject:[NSNull null]];
     }
     
     for(int i=0;i<numQuestions;i++) {
-        // Calculate the answer
-        id question = [questions objectAtIndex:i];
-        int answerVal = level*[question intValue];
-        
-        // Find a random answerLabel (not on the same-line ideally) to place the answer
-        int answerPos = arc4random() % 5; // between 0 and 4;
-        // Loop if answerPosition has already been used, or it's on the same line as the question
-        while([answers objectAtIndex:answerPos] != (id)[NSNull null] || answerPos == i){
-            answerPos = arc4random() % 5; // between 0 and 4
-            // If we're generating the last answer position, and we've found a free position, it must be the only one available
-            if(i >= numQuestions-1 && [answers objectAtIndex:answerPos] == (id)[NSNull null]){
-                break;
-            }
-        }
-        
-        // Add answer to answers array at answerPos
-        [answers replaceObjectAtIndex:answerPos withObject:[NSNumber numberWithInt:answerVal]];
+      // Find the multiplier from the level
+      id multipliers = [levels objectAtIndex:(userLevel-1)];
+      int random = arc4random() % [multipliers count];
+      int multiplier = [[multipliers objectAtIndex:random] integerValue];
+      [questionLevels addObject:[NSNumber numberWithInt:multiplier]];
+      // Calculate the answer
+      id question = [questions objectAtIndex:i];
+      int answerVal = multiplier*[question intValue];
+      
+      // Find a random answerLabel (not on the same-line ideally) to place the answer
+      int answerPos = arc4random() % 5; // between 0 and 4;
+      // Loop if answerPosition has already been used, or it's on the same line as the question
+      while([answers objectAtIndex:answerPos] != (id)[NSNull null] || answerPos == i){
+          answerPos = arc4random() % 5; // between 0 and 4
+          // If we're generating the last answer position, and we've found a free position, it must be the only one available
+          if(i >= numQuestions-1 && [answers objectAtIndex:answerPos] == (id)[NSNull null]){
+              break;
+          }
+      }
+      
+      // Add answer to answers array at answerPos
+      [answers replaceObjectAtIndex:answerPos withObject:[NSNumber numberWithInt:answerVal]];
     }
 }
 

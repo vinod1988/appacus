@@ -141,8 +141,8 @@
   for(int i=0;i<[game numQuestions];i++) {
     id targetButton = [targetButtons objectAtIndex:i];
     id userAnswer = [[game userAnswers] objectAtIndex:i];
-    id question = [[game questions] objectAtIndex:i];
-    int correctAnswer = [game calculateAnswer:[question intValue]];
+    //id question = [[game questions] objectAtIndex:i];
+    int correctAnswer = [game calculateAnswer:i];
     if(userAnswer != (id)[NSNull null] && correctAnswer == [userAnswer intValue]){
       // Correct answer
       [targetButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
@@ -216,7 +216,7 @@
 
 - (void)resetGame{
   game = [[GameController alloc] init];
-  [game setLevel:2];
+  [game setUserLevel:1];
   [game setNumQuestions:5];
   
   [game repopulateGame];
@@ -240,8 +240,9 @@
   for(int i=0;i<[game numQuestions];i++) {
     // Set questionLabel text
     id questionLabel = [questionLabels objectAtIndex:i];
+    id multiplier = [[game questionLevels] objectAtIndex:i];
     id question = [[game questions] objectAtIndex:i];
-    [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ",[game level], [question intValue]]];
+    [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ",[multiplier intValue], [question intValue]]];
     
     // Reset target button style
     id targetButton = [targetButtons objectAtIndex:i];

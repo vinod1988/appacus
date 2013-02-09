@@ -444,6 +444,26 @@
         <image name="QuestionBox.png" width="347" height="133"/>
         <image name="TransparentAnswerBox.png" width="152" height="131"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="roundAction:"/>
+                <relationship kind="action" name="touchAnswer:"/>
+                <relationship kind="action" name="touchDownTarget:"/>
+                <relationship kind="action" name="touchUpTarget:"/>
+                <relationship kind="outlet" name="livesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="answerButtons" candidateClass="UIButton"/>
+                <relationship kind="outletCollection" name="answerLabels" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="questionLabels" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="targetButtons" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

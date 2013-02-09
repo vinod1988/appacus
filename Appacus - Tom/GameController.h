@@ -11,23 +11,27 @@
 
 @interface GameController : NSObject
 {
-    NSMutableArray *questions;
-    NSMutableArray *answers;
-    NSMutableArray *userAnswers;
-    int level;
-    int numQuestions;
-    int heldAnswer;
-    int roundScore;
-    int userScore;
-    int userLives;
-    BOOL roundComplete;
-    BOOL gameOver;
+  NSMutableArray *questions;
+  NSMutableArray *questionLevels;
+  NSMutableArray *answers;
+  NSMutableArray *userAnswers;
+  NSMutableArray *levels;
+  int userLevel;
+  int numQuestions;
+  int heldAnswer;
+  int roundScore;
+  int userScore;
+  int userLives;
+  BOOL roundComplete;
+  BOOL gameOver;
 }
 
 @property (nonatomic, retain) NSMutableArray *questions;
+@property (nonatomic, retain) NSMutableArray *questionLevels;
 @property (nonatomic, retain) NSMutableArray *answers;
 @property (nonatomic, retain) NSMutableArray *userAnswers;
-@property int level;
+@property (nonatomic, retain) NSMutableArray *levels;
+@property int userLevel;
 @property int userScore;
 @property int userLives;
 @property int numQuestions;
