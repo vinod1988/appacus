@@ -18,6 +18,7 @@
     int numQuestions;
     int heldAnswer;
     int total;
+    int userScore;
     BOOL complete;
 }
 
@@ -28,12 +29,14 @@
 @property int numQuestions;
 @property int heldAnswer;
 @property int total;
+@property int userScore;
 @property BOOL complete;
 
 -(void)repopulateGame;
 -(int)numAnswered;
 -(int)calculateAnswer:(int)question;
 -(int)calculateScore;
+-(void)updateScore;
 -(void)notifyScore;
 
 @end

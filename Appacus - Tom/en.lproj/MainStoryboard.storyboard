@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -235,6 +235,14 @@
                                     <action selector="checkAnswers:" destination="2" eventType="touchUpInside" id="UDO-PV-RoU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amM-Wy-hVE">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="BV9-Im-hNW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -293,10 +301,12 @@
                             <constraint firstItem="DsG-Qn-0RX" firstAttribute="centerY" secondItem="Tml-f9-0j3" secondAttribute="centerY" type="default" id="l5s-gw-zed"/>
                             <constraint firstItem="Tml-f9-0j3" firstAttribute="top" secondItem="XV1-bN-daW" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lKO-oe-Git"/>
                             <constraint firstItem="I2F-gt-vnk" firstAttribute="centerY" secondItem="UzY-e8-iJr" secondAttribute="centerY" type="default" id="lmp-JC-Ec5"/>
+                            <constraint firstAttribute="trailing" secondItem="amM-Wy-hVE" secondAttribute="trailing" constant="90" id="n8A-ok-Drv"/>
                             <constraint firstItem="kkK-St-OTI" firstAttribute="top" secondItem="5" secondAttribute="top" constant="300" id="pD5-Ta-dhX"/>
                             <constraint firstItem="DsG-Qn-0RX" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="-5" id="q0y-26-f2m"/>
                             <constraint firstItem="38C-cd-iTv" firstAttribute="baseline" secondItem="GpQ-K5-lig" secondAttribute="baseline" type="default" id="qM0-6E-p1G"/>
                             <constraint firstItem="XV1-bN-daW" firstAttribute="trailing" secondItem="9Xb-JV-Kms" secondAttribute="trailing" type="default" id="qlA-4N-zA3"/>
+                            <constraint firstItem="amM-Wy-hVE" firstAttribute="centerY" secondItem="GuO-Ca-bsc" secondAttribute="centerY" type="default" id="rCS-TC-sXC"/>
                             <constraint firstItem="Z7T-E4-2HP" firstAttribute="centerY" secondItem="CJD-Qw-AZx" secondAttribute="centerY" type="default" id="reD-1w-uYd"/>
                             <constraint firstItem="LcQ-i2-LI6" firstAttribute="top" secondItem="CJD-Qw-AZx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="u80-AS-YCP"/>
                             <constraint firstItem="CJD-Qw-AZx" firstAttribute="top" secondItem="Tml-f9-0j3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vgx-IA-3bH"/>
@@ -305,6 +315,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="scoreLabel" destination="amM-Wy-hVE" id="xBw-Uo-Fgl"/>
                         <outletCollection property="questionLabels" destination="GpQ-K5-lig" id="FNp-dI-IBa"/>
                         <outletCollection property="questionLabels" destination="kkK-St-OTI" id="SLs-gC-8UZ"/>
                         <outletCollection property="questionLabels" destination="UzY-e8-iJr" id="c4l-kD-Rxc"/>
@@ -333,19 +344,6 @@
         <image name="QuestionBox.png" width="347" height="133"/>
         <image name="TransparentAnswerBox.png" width="152" height="131"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="initialiseAction:"/>
-                <relationship kind="outletCollection" name="answers" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="questions" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

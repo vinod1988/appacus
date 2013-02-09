@@ -16,6 +16,7 @@
 @synthesize questionLabels;
 @synthesize targetButtons;
 @synthesize answerButtons;
+@synthesize scoreLabel;
 
 // Run once scene (viewController) has loaded
 - (void)viewDidLoad
@@ -27,6 +28,7 @@
     // Initialise GameController object if not initialized
     if(![game isKindOfClass:[GameController class]]){
         // Reset the game
+        game = [[GameController alloc] init];
         [self resetGame];
     }
 }
@@ -85,36 +87,47 @@
 
 - (IBAction)checkAnswers:(id)sender{
     
-    UIButton *checkButton = (UIButton *)sender;
-    
-    // Only trigger an action if game is in progress
-    if(![game complete]){
-    
-        [game calculateScore];
+    if([game numAnswered] == [game numQuestions]){
+        UIButton *checkButton = (UIButton *)sender;
         
-        for(int i=0;i<[game numQuestions];i++) {
-            id targetButton = [targetButtons objectAtIndex:i];
-            id userAnswer = [[game userAnswers] objectAtIndex:i];
-            id question = [[game questions] objectAtIndex:i];
-            if(userAnswer != (id)[NSNull null] && [game calculateAnswer:[question intValue]] == [userAnswer intValue]){
-                [targetButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-            }else{
-                [targetButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        // Only trigger an action if game is in progress
+        if(![game complete]){
+        
+            [game updateScore];
+            
+            [scoreLabel setText:[NSString stringWithFormat:@"%i",[game userScore]]];
+            
+            for(int i=0;i<[game numQuestions];i++) {
+                id targetButton = [targetButtons objectAtIndex:i];
+                id userAnswer = [[game userAnswers] objectAtIndex:i];
+                id question = [[game questions] objectAtIndex:i];
+                if(userAnswer != (id)[NSNull null] && [game calculateAnswer:[question intValue]] == [userAnswer intValue]){
+                    [targetButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+                }else{
+                    [targetButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                }
             }
-        }
-        
-        [game notifyScore];
-        
-        // Check if user has answered all questions. If so, allow user to reset game.
-        // This could be used to send the user elsewhere, such as into the next level
-        if([game numAnswered] == [game numQuestions]){
-            [game setComplete:true]; // Tell game that it's now complete
-            [checkButton setTitle:[NSString stringWithFormat:@"Reset game"] forState:UIControlStateNormal]; // Switch checkButton title to 'Reset game'. checkAnswers handles the rest
+            
+            [game notifyScore];
+            
+            // Check if user has answered all questions. If so, allow user to reset game.
+            // This could be used to send the user elsewhere, such as into the next level
+            if([game numAnswered] == [game numQuestions]){
+                [game setComplete:true]; // Tell game that it's now complete
+                [checkButton setTitle:[NSString stringWithFormat:@"Reset game"] forState:UIControlStateNormal]; // Switch checkButton title to 'Reset game'. checkAnswers handles the rest
+            }
+        }else{
+            // Reset view and game
+            [self resetGame];
+            [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal]; // Switch checkButton title back to 'Check'
         }
     }else{
-        // Reset view and game
-        [self resetGame];
-        [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal]; // Switch checkButton title back to 'Check'
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please attempt all questions"
+                                                        message:@"Please attempt all questions before checking your answers"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 
@@ -157,7 +170,6 @@
 
 // (Re)set the game and populate the game elements with corresponding answers and questions
 - (void)resetGame{
-    game = [[GameController alloc] init];
     
     [game setLevel:2];
     [game setNumQuestions:5];

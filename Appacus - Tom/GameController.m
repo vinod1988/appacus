@@ -16,6 +16,7 @@
 @synthesize numQuestions;
 @synthesize heldAnswer;
 @synthesize total;
+@synthesize userScore;
 @synthesize complete;
 
 - (id)init
@@ -31,6 +32,7 @@
         numQuestions = 0;
         heldAnswer = 0;
         total = 0;
+        userScore = 0;
         complete = false;
     }
     
@@ -39,6 +41,7 @@
 
 - (void)repopulateGame{
     [questions removeAllObjects];
+    [answers removeAllObjects];
     [userAnswers removeAllObjects];
     heldAnswer = 0;
     total = 0;
@@ -81,6 +84,10 @@
         }
     }
     return total;
+}
+
+- (void)updateScore{
+    userScore = userScore + [self calculateScore];
 }
 
 - (void)notifyScore{

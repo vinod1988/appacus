@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *answerButtons;
 
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
 -(IBAction)touchAnswer:(id)sender;
 
 -(IBAction)touchTarget:(id)sender;
