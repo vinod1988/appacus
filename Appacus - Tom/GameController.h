@@ -17,26 +17,30 @@
     int level;
     int numQuestions;
     int heldAnswer;
-    int total;
+    int roundScore;
     int userScore;
-    BOOL complete;
+    int userLives;
+    BOOL roundComplete;
+    BOOL gameOver;
 }
 
 @property (nonatomic, retain) NSMutableArray *questions;
 @property (nonatomic, retain) NSMutableArray *answers;
 @property (nonatomic, retain) NSMutableArray *userAnswers;
 @property int level;
+@property int userScore;
+@property int userLives;
 @property int numQuestions;
 @property int heldAnswer;
-@property int total;
-@property int userScore;
-@property BOOL complete;
+@property int roundScore;
+@property BOOL roundComplete;
+@property BOOL gameOver;
 
 -(void)repopulateGame;
 -(int)numAnswered;
 -(int)calculateAnswer:(int)question;
 -(int)calculateScore;
 -(void)updateScore;
--(void)notifyScore;
+-(void)updateLives;
 
 @end

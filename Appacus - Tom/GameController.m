@@ -15,9 +15,11 @@
 @synthesize level;
 @synthesize numQuestions;
 @synthesize heldAnswer;
-@synthesize total;
+@synthesize roundScore;
 @synthesize userScore;
-@synthesize complete;
+@synthesize userLives;
+@synthesize roundComplete;
+@synthesize gameOver;
 
 - (id)init
 {
@@ -31,9 +33,10 @@
         level = 0;
         numQuestions = 0;
         heldAnswer = 0;
-        total = 0;
+        roundScore = 0;
         userScore = 0;
-        complete = false;
+        userLives = 3;
+        roundComplete = false;
     }
     
     return self;
@@ -44,8 +47,7 @@
     [answers removeAllObjects];
     [userAnswers removeAllObjects];
     heldAnswer = 0;
-    total = 0;
-    complete = false;
+    roundComplete = false;
     if(numQuestions > 0){
         for (int i = 0; i < numQuestions; ++i)
         {
@@ -74,8 +76,7 @@
 - (int)calculateScore{
     id question;
     id userAnswer;
-    total = 0;
-    NSLog(@"%@",questions);
+    int total = 0;
     for(int i=0;i<numQuestions;i++){
         question = [questions objectAtIndex:i];
         userAnswer = [userAnswers objectAtIndex:i];
@@ -87,17 +88,20 @@
 }
 
 - (void)updateScore{
-    userScore = userScore + [self calculateScore];
+    roundScore = [self calculateScore];
+    userScore = userScore + roundScore;
+    if([self numAnswered] == numQuestions){
+      roundComplete = true;
+    }
 }
 
-- (void)notifyScore{
-    id alertMessage = [NSString stringWithFormat:@"You scored %i out of %i", total, numQuestions];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well Done!"
-                                                    message:alertMessage
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+- (void)updateLives{
+    if(roundScore < numQuestions){
+        --userLives;
+    }
+    if(userLives < 0){
+        gameOver = true;
+    }
 }
 
 - (void)generateQuestions{

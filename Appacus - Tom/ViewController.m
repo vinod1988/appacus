@@ -15,8 +15,10 @@
 @implementation ViewController
 @synthesize questionLabels;
 @synthesize targetButtons;
+@synthesize answerLabels;
 @synthesize answerButtons;
 @synthesize scoreLabel;
+@synthesize livesLabel;
 
 // Run once scene (viewController) has loaded
 - (void)viewDidLoad
@@ -28,7 +30,6 @@
     // Initialise GameController object if not initialized
     if(![game isKindOfClass:[GameController class]]){
         // Reset the game
-        game = [[GameController alloc] init];
         [self resetGame];
     }
 }
@@ -37,7 +38,7 @@
 - (IBAction)touchAnswer:(id)sender
 {
     // Only trigger an action if game is in progress
-    if(![game complete]){
+    if(![game roundComplete]){
         UIButton *button = (UIButton *)sender;
         int position = [answerButtons indexOfObject:button]; // Get button position
         id answer = [[game answers] objectAtIndex:position]; // Use button position as the index of answer in answers array
@@ -59,67 +60,62 @@
 }
 
 // Place the answer on the target if target is available. Otherwise, reset the question current in target
-- (IBAction)touchTarget:(id)sender
-{
-    // Only trigger an action if game is in progress
-    if(![game complete]){
-        UIButton *targetButton = (UIButton *)sender;
-        int position = [targetButtons indexOfObject:targetButton];
-        int answer = [game heldAnswer];
-        // Check if there is an answer in-hand
-        if(answer > 0){
-            int answerIndex = [[game answers] indexOfObject:[NSNumber numberWithInt:answer]];
-            id answerButton = [answerButtons objectAtIndex:answerIndex];
-            // Check if this target has already been used
-            if([[game userAnswers] objectAtIndex:position] == (id)[NSNull null]){
-                // Set that targetButton to the answer and remove the answerButton
-                [self setTarget:targetButton withAnswer:answerButton]; 
-                [game setHeldAnswer:0]; // Reset held answer
-            }
-        }else{
-            // User isn't dropping anything on the target. 
-            // Reset buttons if possible
-            [self replaceTarget:targetButton];
-            
-        }
+- (IBAction)touchDownTarget:(id)sender{
+  // Only trigger an action if game is in progress
+  if(![game roundComplete]){
+    UIButton *targetButton = (UIButton *)sender;
+    int position = [targetButtons indexOfObject:targetButton];
+    // Check if there is an answer in-hand
+    if([game heldAnswer] > 0){
+      int answerIndex = [[game answers] indexOfObject:[NSNumber numberWithInt:[game heldAnswer]]];
+      id answerButton = [answerButtons objectAtIndex:answerIndex];
+      // Check if this target has already been used
+      if([[game userAnswers] objectAtIndex:position] != (id)[NSNull null]){
+          [self replaceTarget:targetButton];
+      }
+      // Set that targetButton to the answer and remove the answerButton
+      [self setTarget:targetButton withAnswer:answerButton];
+      [game setHeldAnswer:0]; // Reset held answer
+    }else{
+        // User isn't dropping anything on the target. 
+        // Reset buttons if possible
+        [self replaceTarget:targetButton];
+        
     }
+  }
 }
 
-- (IBAction)checkAnswers:(id)sender{
+-(IBAction)touchUpTarget:(id)sender{
+  
+}
+
+- (IBAction)roundAction:(id)sender{
     
     if([game numAnswered] == [game numQuestions]){
         UIButton *checkButton = (UIButton *)sender;
         
-        // Only trigger an action if game is in progress
-        if(![game complete]){
-        
-            [game updateScore];
-            
-            [scoreLabel setText:[NSString stringWithFormat:@"%i",[game userScore]]];
-            
-            for(int i=0;i<[game numQuestions];i++) {
-                id targetButton = [targetButtons objectAtIndex:i];
-                id userAnswer = [[game userAnswers] objectAtIndex:i];
-                id question = [[game questions] objectAtIndex:i];
-                if(userAnswer != (id)[NSNull null] && [game calculateAnswer:[question intValue]] == [userAnswer intValue]){
-                    [targetButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-                }else{
-                    [targetButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                }
-            }
-            
-            [game notifyScore];
-            
-            // Check if user has answered all questions. If so, allow user to reset game.
-            // This could be used to send the user elsewhere, such as into the next level
-            if([game numAnswered] == [game numQuestions]){
-                [game setComplete:true]; // Tell game that it's now complete
-                [checkButton setTitle:[NSString stringWithFormat:@"Reset game"] forState:UIControlStateNormal]; // Switch checkButton title to 'Reset game'. checkAnswers handles the rest
-            }
+        if([game gameOver]){
+          // Button intended to reset game
+          [self resetGame];
+          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+        }else if([game roundComplete]){
+          // Button intended to retry round
+          [self resetRound];
+          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
         }else{
-            // Reset view and game
-            [self resetGame];
-            [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal]; // Switch checkButton title back to 'Check'
+          // Button intended to check answers
+          [self checkAnswers];
+          
+          if([game gameOver]){
+            // Warn of game over and update button to reset
+            [self notifyGameOver];
+            [checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
+          }else{
+            // Notify score and allow to retry round
+            [self notifyScore];
+            [checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
+          }
+          
         }
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please attempt all questions"
@@ -129,6 +125,56 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (void)checkAnswers{
+  [game updateScore];
+  [game updateLives];
+  
+  if(![game gameOver]){
+    [livesLabel setText:[NSString stringWithFormat:@"%i",[game userLives]]];
+  }
+  
+  [scoreLabel setText:[NSString stringWithFormat:@"%i",[game userScore]]];
+  
+  // Colour answers to show correct/incorrect
+  for(int i=0;i<[game numQuestions];i++) {
+    id targetButton = [targetButtons objectAtIndex:i];
+    id userAnswer = [[game userAnswers] objectAtIndex:i];
+    id question = [[game questions] objectAtIndex:i];
+    int correctAnswer = [game calculateAnswer:[question intValue]];
+    if(userAnswer != (id)[NSNull null] && correctAnswer == [userAnswer intValue]){
+      // Correct answer
+      [targetButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    }else{
+      // Incorrect answer
+      id answerLabel = [answerLabels objectAtIndex:i]; // Find the answer label
+      [answerLabel setText:[NSString stringWithFormat:@"The correct answer was %i", correctAnswer]];
+      [targetButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }
+  }
+  
+}
+
+- (void)notifyScore{
+  
+    id alertMessage = [NSString stringWithFormat:@"You scored %i out of %i", [game roundScore], [game numQuestions]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well Done!"
+                                                    message:alertMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)notifyGameOver{
+  id alertMessage = [NSString stringWithFormat:@"You scored %i", [game userScore]];
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
+                                                  message:alertMessage
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
 }
 
 // Set the targetButton to answerButton and 'remove' answerButton
@@ -168,59 +214,83 @@
     }
 }
 
-// (Re)set the game and populate the game elements with corresponding answers and questions
 - (void)resetGame{
+  game = [[GameController alloc] init];
+  [game setLevel:2];
+  [game setNumQuestions:5];
+  
+  [game repopulateGame];
+  [self resetView];
+}
+
+// (Re)set the round and populate the game elements with corresponding answers and questions
+- (void)resetRound{
     
-    [game setLevel:2];
-    [game setNumQuestions:5];
+  [game repopulateGame];
+  [self resetView];
+  
+}
+
+- (void)resetView{
+  
+  [livesLabel setText:[NSString stringWithFormat:@"%i",[game userLives]]];
+  [scoreLabel setText:[NSString stringWithFormat:@"%i",[game userScore]]];
+  
+  // Set the labels from the answer and question arrays
+  for(int i=0;i<[game numQuestions];i++) {
+    // Set questionLabel text
+    id questionLabel = [questionLabels objectAtIndex:i];
+    id question = [[game questions] objectAtIndex:i];
+    [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ",[game level], [question intValue]]];
     
-    // Reset the game
-    [game repopulateGame];
+    // Reset target button style
+    id targetButton = [targetButtons objectAtIndex:i];
+    [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [targetButton setTitle:[NSString stringWithFormat:@""]  forState: UIControlStateNormal];
+    [targetButton setBackgroundImage:[UIImage imageNamed:@"TransparentAnswerBox.png"] forState: UIControlStateNormal];
     
-    // Set the labels from the answer and question arrays
-    for(int i=0;i<[game numQuestions];i++) {
-        // Set questionLabel text
-        id questionLabel = [questionLabels objectAtIndex:i];
-        id question = [[game questions] objectAtIndex:i];
-        [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ",[game level], [question intValue]]];
-        
-        // Reset target button style
-        id targetButton = [targetButtons objectAtIndex:i];
-        [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [targetButton setTitle:[NSString stringWithFormat:@""]  forState: UIControlStateNormal];
-        [targetButton setBackgroundImage:[UIImage imageNamed:@"TransparentAnswerBox.png"] forState: UIControlStateNormal];
-        
-        // Set the answerButton text and style
-        id answerButton = [answerButtons objectAtIndex:i];
-        id answer = [[game answers] objectAtIndex:i];
-        [answerButton setTitle:[NSString stringWithFormat:@"%i", [answer intValue]] forState: UIControlStateNormal];
-        [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [answerButton setBackgroundImage:[UIImage imageNamed:@"AnswerBox.png"] forState: UIControlStateNormal];
-    }
+    // Clear the answerLabel text
+    id answerLabel = [answerLabels objectAtIndex:i];
+    [answerLabel setText:[NSString stringWithFormat:@""]];
+    
+    // Set the answerButton text and style
+    id answerButton = [answerButtons objectAtIndex:i];
+    id answer = [[game answers] objectAtIndex:i];
+    [answerButton setTitle:[NSString stringWithFormat:@"%i", [answer intValue]] forState: UIControlStateNormal];
+    [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [answerButton setBackgroundImage:[UIImage imageNamed:@"AnswerBox.png"] forState: UIControlStateNormal];
+  }
 }
 
 - (void)initElementArrays{
-    // Order questionLabels array by tag
-    self.questionLabels = [self.questionLabels sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
-        if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
-        else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
-        else return NSOrderedSame;
-    }];
-    
-    
-    // Order targetButtons array by tag
-    self.targetButtons = [self.targetButtons sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
-        if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
-        else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
-        else return NSOrderedSame;
-    }];
-    
-    // Order answerButtons array by tag
-    self.answerButtons = [self.answerButtons sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
-        if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
-        else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
-        else return NSOrderedSame;
-    }];
+  // Order questionLabels array by tag
+  self.questionLabels = [self.questionLabels sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
+      if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
+      else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
+      else return NSOrderedSame;
+  }];
+  
+  
+  // Order targetButtons array by tag
+  self.targetButtons = [self.targetButtons sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
+      if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
+      else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
+      else return NSOrderedSame;
+  }];
+  
+  // Order targetButtons array by tag
+  self.answerLabels = [self.answerLabels sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
+    if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
+    else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
+    else return NSOrderedSame;
+  }];
+  
+  // Order answerButtons array by tag
+  self.answerButtons = [self.answerButtons sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
+      if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
+      else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
+      else return NSOrderedSame;
+  }];
 }
 
 - (void)didReceiveMemoryWarning

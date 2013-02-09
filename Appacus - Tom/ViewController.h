@@ -15,15 +15,22 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *targetButtons;
 
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *answerLabels;
+
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *answerButtons;
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *livesLabel;
+
+
 -(IBAction)touchAnswer:(id)sender;
 
--(IBAction)touchTarget:(id)sender;
+-(IBAction)touchUpTarget:(id)sender;
 
--(IBAction)checkAnswers:(id)sender;
+-(IBAction)touchDownTarget:(id)sender;
+
+-(IBAction)roundAction:(id)sender;
 
 @end
 
