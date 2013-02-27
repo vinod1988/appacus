@@ -29,9 +29,15 @@
 
 @property BOOL userNotified;
 
+@property (nonatomic, retain) NSMutableArray *answerButtonPositions;
+
 -(void)initialise;
 
--(IBAction)touchAnswer:(id)sender;
+-(IBAction)touchAnswer:(id)sender forEvent:(UIEvent *)event;
+
+- (IBAction)dragAnswer:(id)sender forEvent:(UIEvent *)event;
+
+- (IBAction)releaseAnswer:(id)sender forEvent:(UIEvent *)event;
 
 -(IBAction)touchUpTarget:(id)sender;
 
@@ -40,6 +46,7 @@
 -(IBAction)roundAction:(id)sender;
 
 -(IBAction)backAction:(id)sender;
+
 
 @end
 

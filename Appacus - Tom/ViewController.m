@@ -17,6 +17,7 @@
 @synthesize targetButtons;
 @synthesize answerLabels;
 @synthesize answerButtons;
+@synthesize answerButtonPositions;
 @synthesize levelLabel;
 @synthesize scoreLabel;
 @synthesize livesLabel;
@@ -47,18 +48,29 @@
         
         // Is this answer in hand, or been placed already?
         if([answer intValue] != [game heldAnswer] && ![[game userAnswers] containsObject:answer]){
-            // Highlight button colour
-            [button setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
-            // Reset currently held answer to it's original position if available
-            if([game heldAnswer] > 0){
-                int previousIndex = [[game answers] indexOfObject:[NSNumber numberWithInt:[game heldAnswer]]];
-                id previousButton = [answerButtons objectAtIndex:previousIndex];
-                [previousButton setTitleColor:[UIColor colorWithWhite:0 alpha:1] forState:UIControlStateNormal];
-            }
-            // This answer has been 'picked up'
-            [game setHeldAnswer:[answer intValue]];
+          // Store the original position of the answer
+          if([answerButtonPositions objectAtIndex:position] == (id)[NSNull null]){
+            [answerButtonPositions insertObject:[NSValue valueWithCGPoint:[answer center]] atIndex:position];
+          }
+          // Highlight button colour
+          [button setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
+          // Reset currently held answer to it's original position if available
+          if([game heldAnswer] > 0){
+              int previousIndex = [[game answers] indexOfObject:[NSNumber numberWithInt:[game heldAnswer]]];
+              id previousButton = [answerButtons objectAtIndex:previousIndex];
+              [previousButton setTitleColor:[UIColor colorWithWhite:0 alpha:1] forState:UIControlStateNormal];
+          }
+          // This answer has been 'picked up'
+          [game setHeldAnswer:[answer intValue]];
         }
     }
+}
+
+- (IBAction)releaseAnswer:(id)sender forEvent:(UIEvent *)event {
+  UIButton *button = (UIButton *)sender;
+  int position = [answerButtons indexOfObject:button]; // Get button position
+  id originalPosition = [answerButtonPositions objectAtIndex:position];
+  [button setCenter:[originalPosition CGPointValue]];
 }
 
 // Place the answer on the target if target is available. Otherwise, reset the question current in target
@@ -144,6 +156,12 @@
 
 - (IBAction)backAction:(id)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)dragAnswer:(id)sender forEvent:(UIEvent *)event {
+    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
+    UIControl *answer = sender;
+    answer.center = point;
 }
 
 - (void)checkAnswers{
@@ -336,6 +354,11 @@
       else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
       else return NSOrderedSame;
   }];
+    
+  // Fill the answerButtonPositions array with null values
+  for (int i = 0; i < 4; ++i){
+    [answerButtonPositions addObject:[NSNull null]];
+  }
 }
 
 - (void)didReceiveMemoryWarning
