@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "ViewController.h"
 
+
 @interface TableSelectController : UIViewController
+
+- (IBAction)playMovie:(id)sender;
 
 @end

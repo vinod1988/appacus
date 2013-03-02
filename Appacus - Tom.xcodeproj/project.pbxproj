@@ -22,9 +22,19 @@
 		48006943168DDCB000250AB8 /* AnswerBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006941168DDCB000250AB8 /* AnswerBox.png */; };
 		48006944168DDCB000250AB8 /* QuestionBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006942168DDCB000250AB8 /* QuestionBox.png */; };
 		48006957168F42E400250AB8 /* TransparentAnswerBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 48006956168F42E400250AB8 /* TransparentAnswerBox.png */; };
+		484861F216E01A3300C9520C /* TimesTableTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 484861F116E01A3300C9520C /* TimesTableTab.png */; };
+		4848623D16E0EFD400C9520C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4848623C16E0EFD400C9520C /* MediaPlayer.framework */; };
+		4848624016E0F96900C9520C /* StarStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 4848623F16E0F96900C9520C /* StarStroke.png */; };
 		48CC5CB716C6F38900D169EE /* TableSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CC5CB616C6F38900D169EE /* TableSelectController.m */; };
 		48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBB16C7055B00D169EE /* MainStoryboard.storyboard */; };
 		48CC5CBF16C70C1D00D169EE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBE16C70C1D00D169EE /* logo.png */; };
+		48D69C7416E2495600F9AB50 /* 2 Times Table.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48D69C7316E2495600F9AB50 /* 2 Times Table.mp4 */; };
+		48F001CA16E016AB00885E55 /* Star Final.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001C916E016AB00885E55 /* Star Final.png */; };
+		48F001CD16E016E900885E55 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001CB16E016E900885E55 /* Play.png */; };
+		48F001CE16E016E900885E55 /* Learn.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001CC16E016E900885E55 /* Learn.png */; };
+		48F001D116E0172F00885E55 /* back icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001CF16E0172F00885E55 /* back icon2.png */; };
+		48F001D216E0172F00885E55 /* back icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001D016E0172F00885E55 /* back icon.png */; };
+		48F001D416E0174200885E55 /* Splash Page - No Buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001D316E0174200885E55 /* Splash Page - No Buttons.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,10 +59,20 @@
 		48006941168DDCB000250AB8 /* AnswerBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnswerBox.png; sourceTree = "<group>"; };
 		48006942168DDCB000250AB8 /* QuestionBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionBox.png; sourceTree = "<group>"; };
 		48006956168F42E400250AB8 /* TransparentAnswerBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TransparentAnswerBox.png; sourceTree = "<group>"; };
+		484861F116E01A3300C9520C /* TimesTableTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimesTableTab.png; sourceTree = "<group>"; };
+		4848623C16E0EFD400C9520C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		4848623F16E0F96900C9520C /* StarStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarStroke.png; path = ../../Design/StarStroke.png; sourceTree = "<group>"; };
 		48CC5CB516C6F38900D169EE /* TableSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSelectController.h; sourceTree = "<group>"; };
 		48CC5CB616C6F38900D169EE /* TableSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSelectController.m; sourceTree = "<group>"; };
 		48CC5CBC16C7055B00D169EE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		48CC5CBE16C70C1D00D169EE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		48D69C7316E2495600F9AB50 /* 2 Times Table.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2 Times Table.mp4"; sourceTree = "<group>"; };
+		48F001C916E016AB00885E55 /* Star Final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star Final.png"; sourceTree = "<group>"; };
+		48F001CB16E016E900885E55 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
+		48F001CC16E016E900885E55 /* Learn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Learn.png; sourceTree = "<group>"; };
+		48F001CF16E0172F00885E55 /* back icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back icon2.png"; sourceTree = "<group>"; };
+		48F001D016E0172F00885E55 /* back icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back icon.png"; sourceTree = "<group>"; };
+		48F001D316E0174200885E55 /* Splash Page - No Buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash Page - No Buttons.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +83,7 @@
 				4800691D168DD7B000250AB8 /* UIKit.framework in Frameworks */,
 				4800691F168DD7B000250AB8 /* Foundation.framework in Frameworks */,
 				48006921168DD7B000250AB8 /* CoreGraphics.framework in Frameworks */,
+				4848623D16E0EFD400C9520C /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +110,7 @@
 		4800691B168DD7B000250AB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4848623C16E0EFD400C9520C /* MediaPlayer.framework */,
 				4800691C168DD7B000250AB8 /* UIKit.framework */,
 				4800691E168DD7B000250AB8 /* Foundation.framework */,
 				48006920168DD7B000250AB8 /* CoreGraphics.framework */,
@@ -116,6 +138,15 @@
 		48006923168DD7B000250AB8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				48D69C7316E2495600F9AB50 /* 2 Times Table.mp4 */,
+				4848623F16E0F96900C9520C /* StarStroke.png */,
+				484861F116E01A3300C9520C /* TimesTableTab.png */,
+				48F001D316E0174200885E55 /* Splash Page - No Buttons.png */,
+				48F001CF16E0172F00885E55 /* back icon2.png */,
+				48F001D016E0172F00885E55 /* back icon.png */,
+				48F001CB16E016E900885E55 /* Play.png */,
+				48F001CC16E016E900885E55 /* Learn.png */,
+				48F001C916E016AB00885E55 /* Star Final.png */,
 				4800693F168DDC3000250AB8 /* Background.png */,
 				48006956168F42E400250AB8 /* TransparentAnswerBox.png */,
 				48CC5CBE16C70C1D00D169EE /* logo.png */,
@@ -193,6 +224,15 @@
 				48006957168F42E400250AB8 /* TransparentAnswerBox.png in Resources */,
 				48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */,
 				48CC5CBF16C70C1D00D169EE /* logo.png in Resources */,
+				48F001CA16E016AB00885E55 /* Star Final.png in Resources */,
+				48F001CD16E016E900885E55 /* Play.png in Resources */,
+				48F001CE16E016E900885E55 /* Learn.png in Resources */,
+				48F001D116E0172F00885E55 /* back icon2.png in Resources */,
+				48F001D216E0172F00885E55 /* back icon.png in Resources */,
+				48F001D416E0174200885E55 /* Splash Page - No Buttons.png in Resources */,
+				484861F216E01A3300C9520C /* TimesTableTab.png in Resources */,
+				4848624016E0F96900C9520C /* StarStroke.png in Resources */,
+				48D69C7416E2495600F9AB50 /* 2 Times Table.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +328,7 @@
 		4800693D168DD7B000250AB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appacus - Tom/Appacus - Tom-Prefix.pch";
 				INFOPLIST_FILE = "Appacus - Tom/Appacus - Tom-Info.plist";
@@ -299,6 +340,7 @@
 		4800693E168DD7B000250AB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appacus - Tom/Appacus - Tom-Prefix.pch";
 				INFOPLIST_FILE = "Appacus - Tom/Appacus - Tom-Info.plist";

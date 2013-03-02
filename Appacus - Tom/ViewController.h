@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GameController.h"
 
+
 @interface ViewController : UIViewController
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *questionLabels;
@@ -33,8 +34,6 @@
 
 -(void)initialise;
 
--(IBAction)touchAnswer:(id)sender forEvent:(UIEvent *)event;
-
 - (IBAction)dragAnswer:(id)sender forEvent:(UIEvent *)event;
 
 - (IBAction)releaseAnswer:(id)sender forEvent:(UIEvent *)event;
@@ -46,7 +45,6 @@
 -(IBAction)roundAction:(id)sender;
 
 -(IBAction)backAction:(id)sender;
-
 
 @end
 

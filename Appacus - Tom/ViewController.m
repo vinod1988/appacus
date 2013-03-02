@@ -356,7 +356,7 @@
   }];
     
   // Fill the answerButtonPositions array with null values
-  for (int i = 0; i < 4; ++i){
+  for (int i = 0; i < [answerButtonPositions count]; ++i){
     [answerButtonPositions addObject:[NSNull null]];
   }
 }

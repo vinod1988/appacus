@@ -30,6 +30,7 @@
   [viewController initialise];
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,6 +41,32 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) playMovie:(id)sender
+{
+  NSString *filepath   =   [[NSBundle mainBundle] pathForResource:@"2 Times Table" ofType:@"mp4"];
+  NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
+  MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:fileURL];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(moviePlaybackComplete:)
+                                               name:MPMoviePlayerPlaybackDidFinishNotification
+                                             object:player];
+  
+  player.controlStyle = MPMovieControlStyleDefault;
+  player.shouldAutoplay = YES;
+  [self.view addSubview:player.view];
+  [player setFullscreen:YES animated: YES];
+  NSLog(@"%@",fileURL);
+}
+
+- (void)moviePlaybackComplete:(NSNotification *)notification
+{
+  MPMoviePlayerController *moviePlayerController = [notification object];
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+                                                object:moviePlayerController];
+  [moviePlayerController.view removeFromSuperview];
 }
 
 @end
