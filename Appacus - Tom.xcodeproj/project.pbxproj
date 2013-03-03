@@ -23,12 +23,12 @@
 		484861F216E01A3300C9520C /* TimesTableTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 484861F116E01A3300C9520C /* TimesTableTab.png */; };
 		4848623D16E0EFD400C9520C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4848623C16E0EFD400C9520C /* MediaPlayer.framework */; };
 		48A46CE316E3FB1A00CF8EA6 /* ArchitectsDaughter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48A46CE216E3FB1A00CF8EA6 /* ArchitectsDaughter.ttf */; };
+		48A46CE716E400B000CF8EA6 /* 2timestable.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48A46CE416E400B000CF8EA6 /* 2timestable.mp4 */; };
+		48A46CE816E400B000CF8EA6 /* 5timestable.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48A46CE516E400B000CF8EA6 /* 5timestable.mp4 */; };
+		48A46CE916E400B000CF8EA6 /* 10timestable.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48A46CE616E400B000CF8EA6 /* 10timestable.mp4 */; };
 		48CC5CB716C6F38900D169EE /* TableSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CC5CB616C6F38900D169EE /* TableSelectController.m */; };
 		48CC5CBD16C7055B00D169EE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBB16C7055B00D169EE /* MainStoryboard.storyboard */; };
 		48CC5CBF16C70C1D00D169EE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CC5CBE16C70C1D00D169EE /* logo.png */; };
-		48D69C7816E36EC100F9AB50 /* 2timestable.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48D69C7716E36EC100F9AB50 /* 2timestable.mp4 */; };
-		48D69CAF16E37FA100F9AB50 /* timestabletest.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48D69CAE16E37F7100F9AB50 /* timestabletest.mp4 */; };
-		48D69CB916E391EA00F9AB50 /* 2 Times Table.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48D69CB816E391EA00F9AB50 /* 2 Times Table.mp4 */; };
 		48D69CBB16E39A7E00F9AB50 /* Star Final.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D69CBA16E39A7E00F9AB50 /* Star Final.png */; };
 		48D69CBD16E39A9900F9AB50 /* StarStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D69CBC16E39A9900F9AB50 /* StarStroke.png */; };
 		48F001CD16E016E900885E55 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F001CB16E016E900885E55 /* Play.png */; };
@@ -61,13 +61,13 @@
 		484861F116E01A3300C9520C /* TimesTableTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimesTableTab.png; sourceTree = "<group>"; };
 		4848623C16E0EFD400C9520C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		48A46CE216E3FB1A00CF8EA6 /* ArchitectsDaughter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArchitectsDaughter.ttf; sourceTree = "<group>"; };
+		48A46CE416E400B000CF8EA6 /* 2timestable.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2timestable.mp4; sourceTree = "<group>"; };
+		48A46CE516E400B000CF8EA6 /* 5timestable.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 5timestable.mp4; sourceTree = "<group>"; };
+		48A46CE616E400B000CF8EA6 /* 10timestable.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 10timestable.mp4; sourceTree = "<group>"; };
 		48CC5CB516C6F38900D169EE /* TableSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSelectController.h; sourceTree = "<group>"; };
 		48CC5CB616C6F38900D169EE /* TableSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSelectController.m; sourceTree = "<group>"; };
 		48CC5CBC16C7055B00D169EE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		48CC5CBE16C70C1D00D169EE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		48D69C7716E36EC100F9AB50 /* 2timestable.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2timestable.mp4; sourceTree = "<group>"; };
-		48D69CAE16E37F7100F9AB50 /* timestabletest.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = timestabletest.mp4; sourceTree = "<group>"; };
-		48D69CB816E391EA00F9AB50 /* 2 Times Table.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2 Times Table.mp4"; sourceTree = "<group>"; };
 		48D69CBA16E39A7E00F9AB50 /* Star Final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star Final.png"; sourceTree = "<group>"; };
 		48D69CBC16E39A9900F9AB50 /* StarStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarStroke.png; sourceTree = "<group>"; };
 		48F001CB16E016E900885E55 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
@@ -140,9 +140,9 @@
 		48006923168DD7B000250AB8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				48D69CAE16E37F7100F9AB50 /* timestabletest.mp4 */,
-				48D69CB816E391EA00F9AB50 /* 2 Times Table.mp4 */,
-				48D69C7716E36EC100F9AB50 /* 2timestable.mp4 */,
+				48A46CE416E400B000CF8EA6 /* 2timestable.mp4 */,
+				48A46CE516E400B000CF8EA6 /* 5timestable.mp4 */,
+				48A46CE616E400B000CF8EA6 /* 10timestable.mp4 */,
 				484861F116E01A3300C9520C /* TimesTableTab.png */,
 				48A46CE216E3FB1A00CF8EA6 /* ArchitectsDaughter.ttf */,
 				48F001D316E0174200885E55 /* Splash Page - No Buttons.png */,
@@ -217,7 +217,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48D69CAF16E37FA100F9AB50 /* timestabletest.mp4 in Resources */,
 				48006927168DD7B000250AB8 /* InfoPlist.strings in Resources */,
 				4800692F168DD7B000250AB8 /* Default.png in Resources */,
 				48006931168DD7B000250AB8 /* Default@2x.png in Resources */,
@@ -232,11 +231,12 @@
 				48F001D216E0172F00885E55 /* back icon.png in Resources */,
 				48F001D416E0174200885E55 /* Splash Page - No Buttons.png in Resources */,
 				484861F216E01A3300C9520C /* TimesTableTab.png in Resources */,
-				48D69C7816E36EC100F9AB50 /* 2timestable.mp4 in Resources */,
-				48D69CB916E391EA00F9AB50 /* 2 Times Table.mp4 in Resources */,
 				48D69CBB16E39A7E00F9AB50 /* Star Final.png in Resources */,
 				48D69CBD16E39A9900F9AB50 /* StarStroke.png in Resources */,
 				48A46CE316E3FB1A00CF8EA6 /* ArchitectsDaughter.ttf in Resources */,
+				48A46CE716E400B000CF8EA6 /* 2timestable.mp4 in Resources */,
+				48A46CE816E400B000CF8EA6 /* 5timestable.mp4 in Resources */,
+				48A46CE916E400B000CF8EA6 /* 10timestable.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
