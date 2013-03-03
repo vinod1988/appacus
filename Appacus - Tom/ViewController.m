@@ -250,7 +250,7 @@
     // Appear to move the answer onto the target
     [targetButton setTitle:[NSString stringWithFormat:@"%i", value]  forState: UIControlStateNormal];
     [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [targetButton setBackgroundImage:[UIImage imageNamed:@"AnswerBox.png"] forState: UIControlStateNormal];
+    [targetButton setBackgroundImage:[UIImage imageNamed:@"Star Final.png"] forState: UIControlStateNormal];
 }
 
 // Replace the questionButton currently 'on' targetButton.
@@ -265,11 +265,11 @@
         // Reset answer to it's original button
         [originalButton setTitle:[NSString stringWithFormat:@"%i", [userAnswer intValue]]  forState: UIControlStateNormal];
         [originalButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [originalButton setBackgroundImage:[UIImage imageNamed:@"AnswerBox.png"] forState: UIControlStateNormal];
+        [originalButton setBackgroundImage:[UIImage imageNamed:@"Star Final.png"] forState: UIControlStateNormal];
         // Reset targetButton to empty style
         [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [targetButton setTitle:[NSString stringWithFormat:@""]  forState: UIControlStateNormal];
-        [targetButton setBackgroundImage:[UIImage imageNamed:@"TransparentAnswerBox.png"] forState: UIControlStateNormal];
+        [targetButton setBackgroundImage:[UIImage imageNamed:@"StarStroke.png"] forState: UIControlStateNormal];
     }
 }
 
@@ -310,7 +310,7 @@
     id targetButton = [targetButtons objectAtIndex:i];
     [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [targetButton setTitle:[NSString stringWithFormat:@""]  forState: UIControlStateNormal];
-    [targetButton setBackgroundImage:[UIImage imageNamed:@"TransparentAnswerBox.png"] forState: UIControlStateNormal];
+    [targetButton setBackgroundImage:[UIImage imageNamed:@"StarStroke.png"] forState: UIControlStateNormal];
     
     // Clear the answerLabel text
     id answerLabel = [answerLabels objectAtIndex:i];
@@ -321,7 +321,7 @@
     id answer = [[game answers] objectAtIndex:i];
     [answerButton setTitle:[NSString stringWithFormat:@"%i", [answer intValue]] forState: UIControlStateNormal];
     [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [answerButton setBackgroundImage:[UIImage imageNamed:@"AnswerBox.png"] forState: UIControlStateNormal];
+    [answerButton setBackgroundImage:[UIImage imageNamed:@"Star Final.png"] forState: UIControlStateNormal];
   }
 }
 

@@ -13,6 +13,6 @@
 
 @interface TableSelectController : UIViewController
 
-- (IBAction)playMovie:(id)sender;
+- (IBAction)Learn2:(id)sender;
 
 @end

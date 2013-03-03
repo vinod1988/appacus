@@ -44,6 +44,8 @@
 
 -(IBAction)roundAction:(id)sender;
 
+-(IBAction)touchAnswer:(id)sender;
+
 -(IBAction)backAction:(id)sender;
 
 @end
