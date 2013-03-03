@@ -26,6 +26,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *livesLabel;
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+
 @property int gameLevel;
 
 @property BOOL userNotified;
@@ -34,9 +38,9 @@
 
 -(void)initialise;
 
-- (IBAction)dragAnswer:(id)sender forEvent:(UIEvent *)event;
+-(IBAction)dragAnswer:(id)sender forEvent:(UIEvent *)event;
 
-- (IBAction)releaseAnswer:(id)sender forEvent:(UIEvent *)event;
+-(IBAction)releaseAnswer:(id)sender forEvent:(UIEvent *)event;
 
 -(IBAction)touchUpTarget:(id)sender;
 

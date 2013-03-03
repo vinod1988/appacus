@@ -14,6 +14,8 @@
 
 @implementation TableSelectController
 
+@synthesize labels;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +35,8 @@
 
 - (void)viewDidLoad
 {
+  UIFont *font = [UIFont fontWithName:@"Architects Daughter" size:60];
+  [labels setValue:font forKey:@"font"];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

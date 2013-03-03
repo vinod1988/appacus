@@ -15,4 +15,8 @@
 
 - (IBAction)LearnAction:(id)sender;
 
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+
+
+
 @end

@@ -23,10 +23,24 @@
 @synthesize livesLabel;
 @synthesize userNotified;
 @synthesize gameLevel;
+@synthesize labels;
+@synthesize buttons;
 
 // Run once scene (viewController) has loaded
 - (void)viewDidLoad
 {
+  [scoreLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
+  [levelLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
+  [livesLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
+  UIFont *newFont = [UIFont fontWithName:@"Architects Daughter" size:30];
+  [answerLabels setValue:newFont forKey:@"font"];
+  [questionLabels setValue:newFont forKey:@"font"];
+  [answerButtons setValue:newFont forKey:@"font"];
+  [targetButtons setValue:newFont forKey:@"font"];
+   UIFont *labelsFont = [UIFont fontWithName:@"Architects Daughter" size:20];
+  [labels setValue:labelsFont forKey:@"font"];
+  [buttons setValue:labelsFont forKey:@"font"];
+   
   [super viewDidLoad];
   [self initialise];
 }
