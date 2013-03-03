@@ -43,30 +43,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) playMovie:(id)sender
-{
-  NSString *filepath   =   [[NSBundle mainBundle] pathForResource:@"2 Times Table" ofType:@"mp4"];
-  NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
-  MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:fileURL];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(moviePlaybackComplete:)
-                                               name:MPMoviePlayerPlaybackDidFinishNotification
-                                             object:player];
-  
-  player.controlStyle = MPMovieControlStyleDefault;
-  player.shouldAutoplay = YES;
-  [self.view addSubview:player.view];
-  [player setFullscreen:YES animated: YES];
-  NSLog(@"%@",fileURL);
+
+
+- (IBAction)Learn2:(id)sender {
+  NSString *filepath = [[NSBundle mainBundle] pathForResource:@"2timestable" ofType:@"mp4"];
+  NSURL *fileURL = [NSURL fileURLWithPath:filepath];
+  MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:fileURL];
+  [[player moviePlayer] prepareToPlay];
+  [[player moviePlayer] setShouldAutoplay:YES];
+  [[player moviePlayer] setControlStyle:2];
+  [[player moviePlayer] setAllowsAirPlay:YES];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+  [self presentMoviePlayerViewControllerAnimated:player];
 }
 
-- (void)moviePlaybackComplete:(NSNotification *)notification
-{
-  MPMoviePlayerController *moviePlayerController = [notification object];
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:MPMoviePlayerPlaybackDidFinishNotification
-                                                object:moviePlayerController];
-  [moviePlayerController.view removeFromSuperview];
-}
+
 
 @end
