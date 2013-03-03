@@ -89,7 +89,7 @@
                                     <segue destination="2" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="5cD-IZ-sxt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lj5-xn-1k9">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lj5-xn-1k9">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="94" id="B2I-mJ-Inh"/>
                                     <constraint firstAttribute="width" constant="157" id="wt6-8z-U5o"/>
@@ -103,10 +103,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="Learn2:" destination="OqY-Hl-nas" eventType="touchUpInside" id="WWG-bY-Wmo"/>
+                                    <action selector="LearnAction:" destination="OqY-Hl-nas" eventType="touchUpInside" id="Gaa-UZ-d8j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0of-8v-j2t">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0of-8v-j2t">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="94" id="Gkr-BM-rAR"/>
                                 </constraints>
@@ -119,10 +119,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="Learn2:" destination="OqY-Hl-nas" eventType="touchUpInside" id="7tH-FR-yyG"/>
+                                    <action selector="LearnAction:" destination="OqY-Hl-nas" eventType="touchUpInside" id="55g-pn-ArK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4s-MN-1Fi">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4s-MN-1Fi">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="94" id="W1f-cT-atd"/>
                                 </constraints>
@@ -135,7 +135,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="Learn2:" destination="OqY-Hl-nas" eventType="touchUpInside" id="dtT-3G-AbW"/>
+                                    <action selector="LearnAction:" destination="OqY-Hl-nas" eventType="touchUpInside" id="HU0-eM-hQD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -691,36 +691,6 @@
         <image name="back icon.png" width="128" height="128"/>
         <image name="logo.png" width="1902" height="556"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="TableSelectController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TableSelectController.h"/>
-            <relationships>
-                <relationship kind="action" name="Learn2:"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backAction:"/>
-                <relationship kind="action" name="dragAnswer:forEvent:"/>
-                <relationship kind="action" name="releaseAnswer:forEvent:"/>
-                <relationship kind="action" name="roundAction:"/>
-                <relationship kind="action" name="touchAnswer:"/>
-                <relationship kind="action" name="touchDownTarget:"/>
-                <relationship kind="action" name="touchUpTarget:"/>
-                <relationship kind="outlet" name="levelLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="livesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="answerButtons" candidateClass="UIButton"/>
-                <relationship kind="outletCollection" name="answerLabels" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="questionLabels" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="targetButtons" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

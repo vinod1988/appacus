@@ -45,8 +45,16 @@
 
 
 
-- (IBAction)Learn2:(id)sender {
-  NSString *filepath = [[NSBundle mainBundle] pathForResource:@"2timestable" ofType:@"mp4"];
+- (IBAction)LearnAction:(id)sender {
+  NSString *filepath;
+  UIButton *button = (UIButton *)sender;
+  if(button.tag == 1){
+    filepath = [[NSBundle mainBundle] pathForResource:@"2timestable" ofType:@"mp4"];
+  }else if(button.tag == 2){
+    filepath = [[NSBundle mainBundle] pathForResource:@"5timestable" ofType:@"mp4"];
+  }else if(button.tag == 3){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10timestable" ofType:@"mp4"];
+  }
   NSURL *fileURL = [NSURL fileURLWithPath:filepath];
   MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:fileURL];
   [[player moviePlayer] prepareToPlay];

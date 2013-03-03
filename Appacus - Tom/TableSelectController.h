@@ -13,6 +13,6 @@
 
 @interface TableSelectController : UIViewController
 
-- (IBAction)Learn2:(id)sender;
+- (IBAction)LearnAction:(id)sender;
 
 @end
