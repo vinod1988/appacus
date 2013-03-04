@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="OqY-Hl-nas">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="OqY-Hl-nas">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Table Select Controller-->
@@ -287,7 +287,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchAnswer:" destination="2" eventType="touchUpInside" id="fVO-Wb-bwX"/>
+                                    <action selector="dragAnswer:forEvent:" destination="2" eventType="touchDragInside" id="gU5-es-F2B"/>
+                                    <action selector="releaseAnswer:forEvent:" destination="2" eventType="touchUpInside" id="IZg-6k-gBh"/>
+                                    <action selector="touchAnswer:" destination="2" eventType="touchDown" id="Cb1-Kh-0N0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-tn-DgC">
@@ -300,7 +302,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchAnswer:" destination="2" eventType="touchUpInside" id="KEv-Nn-c1N"/>
+                                    <action selector="dragAnswer:forEvent:" destination="2" eventType="touchDragInside" id="gIe-PY-faM"/>
+                                    <action selector="releaseAnswer:forEvent:" destination="2" eventType="touchUpInside" id="Wem-oZ-vVE"/>
+                                    <action selector="touchAnswer:" destination="2" eventType="touchDown" id="Fp3-zZ-xOf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLB-R9-8b6">
@@ -316,7 +320,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchAnswer:" destination="2" eventType="touchUpInside" id="tfp-TJ-FTq"/>
+                                    <action selector="dragAnswer:forEvent:" destination="2" eventType="touchDragInside" id="iYk-sn-gJs"/>
+                                    <action selector="releaseAnswer:forEvent:" destination="2" eventType="touchUpInside" id="WQG-5H-Vya"/>
+                                    <action selector="touchAnswer:" destination="2" eventType="touchDown" id="OVa-TC-4fV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ua-FG-vgf">
@@ -332,7 +338,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchAnswer:" destination="2" eventType="touchUpInside" id="IKl-FP-vSE"/>
+                                    <action selector="dragAnswer:forEvent:" destination="2" eventType="touchDragInside" id="7hO-76-l4c"/>
+                                    <action selector="releaseAnswer:forEvent:" destination="2" eventType="touchUpInside" id="HqY-Rs-seP"/>
+                                    <action selector="touchAnswer:" destination="2" eventType="touchDown" id="xru-Ve-as8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-Te-DtL">
@@ -691,6 +699,36 @@
         <image name="back icon.png" width="128" height="128"/>
         <image name="logo.png" width="1902" height="556"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TableSelectController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TableSelectController.h"/>
+            <relationships>
+                <relationship kind="action" name="LearnAction:"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backAction:"/>
+                <relationship kind="action" name="dragAnswer:forEvent:"/>
+                <relationship kind="action" name="releaseAnswer:forEvent:"/>
+                <relationship kind="action" name="roundAction:"/>
+                <relationship kind="action" name="touchAnswer:"/>
+                <relationship kind="action" name="touchDownTarget:"/>
+                <relationship kind="action" name="touchUpTarget:"/>
+                <relationship kind="outlet" name="levelLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="livesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="answerButtons" candidateClass="UIButton"/>
+                <relationship kind="outletCollection" name="answerLabels" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="questionLabels" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="targetButtons" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

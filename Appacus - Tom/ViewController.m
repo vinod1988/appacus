@@ -37,25 +37,19 @@
 }
 
 
-// 'Hold' the answer if it hasn't been placed already
 - (IBAction)touchAnswer:(id)sender
 {
     // Only trigger an action if game is in progress
     if(![game roundComplete]){
         UIButton *button = (UIButton *)sender;
-        int position = [answerButtons indexOfObject:button]; // Get button position
-        id answer = [[game answers] objectAtIndex:position]; // Use button position as the index of answer in answers array
+      // Get button position
+      int position = [answerButtons indexOfObject:button];
         
-        // Is this answer in hand, or been placed already?
-        if([answer intValue] != [game heldAnswer] && ![[game userAnswers] containsObject:answer]){
-          // Store the original position of the answer
-          if([answerButtonPositions objectAtIndex:position] == (id)[NSNull null]){
-            CGPoint buttonLocation = [button center];
-            [answerButtonPositions insertObject:[NSValue valueWithCGPoint:buttonLocation] atIndex:position];
-          }
-          // This answer has been 'picked up'
-          [game setHeldAnswer:[answer intValue]];
-        }
+      // Store the original position of the answer
+      if([answerButtonPositions objectAtIndex:position] == (id)[NSNull null]){
+        CGPoint buttonLocation = [button center];
+        [answerButtonPositions replaceObjectAtIndex:position withObject:[NSValue valueWithCGPoint:buttonLocation]];
+      }
     }
 }
 
@@ -69,9 +63,35 @@
 - (IBAction)releaseAnswer:(id)sender forEvent:(UIEvent *)event {
   UIButton *button = (UIButton *)sender;
   int position = [answerButtons indexOfObject:button]; // Get button position
-  id originalPosition = [answerButtonPositions objectAtIndex:position];
-  [button setCenter:[originalPosition CGPointValue]];
-  [game setHeldAnswer:0];
+  int droppedTarget;
+  bool found = false;
+  for(int i=0;i<[targetButtons count];++i){
+    id targetButton = [targetButtons objectAtIndex:i];
+    CGSize targetSize = [targetButton size];
+    CGPoint targetCenter = [targetButton center];
+    float targetTop = targetCenter.y + (targetSize.height / 2);
+    float targetRight = targetCenter.x + (targetSize.width / 2);
+    float targetBottom = targetCenter.y - (targetSize.height / 2);
+    float targetLeft = targetCenter.x - (targetSize.width / 2);
+    CGPoint buttonCenter = [button center];
+    if((buttonCenter.x > targetLeft &&
+        buttonCenter.x < targetRight) &&
+       (buttonCenter.y > targetBottom && buttonCenter.y < targetTop)){
+      droppedTarget = i;
+      found = true;
+      break;
+    }
+  }
+  if(found){
+    // Check if this target has already been used
+    if([[game userAnswers] objectAtIndex:droppedTarget] == (id)[NSNull null]){
+      // Set that targetButton to the answer and remove the answerButton
+      [self setTarget:droppedTarget withAnswer:position];
+    }
+  }else{
+    id originalPosition = [answerButtonPositions objectAtIndex:position];
+    [button setCenter:[originalPosition CGPointValue]];
+  }
 }
 
 // Place the answer on the target if target is available. Otherwise, reset the question current in target
@@ -79,23 +99,8 @@
   // Only trigger an action if game is in progress
   if(![game roundComplete]){
     UIButton *targetButton = (UIButton *)sender;
-    int position = [targetButtons indexOfObject:targetButton];
-    // Check if there is an answer in-hand
-    if([game heldAnswer] > 0){
-      int answerIndex = [[game answers] indexOfObject:[NSNumber numberWithInt:[game heldAnswer]]];
-      id answerButton = [answerButtons objectAtIndex:answerIndex];
-      // Check if this target has already been used
-      if([[game userAnswers] objectAtIndex:position] != (id)[NSNull null]){
-          [self replaceTarget:targetButton];
-      }
-      // Set that targetButton to the answer and remove the answerButton
-      [self setTarget:targetButton withAnswer:answerButton];
-      [game setHeldAnswer:0]; // Reset held answer
-    }else{
-        // User isn't dropping anything on the target. 
-        // Reset buttons if possible
-        [self replaceTarget:targetButton];
-    }
+    int targetIndex = [targetButtons indexOfObject:targetButton];
+    [self replaceTarget:targetIndex];
   }
 }
 
@@ -231,40 +236,27 @@
 }
 
 // Set the targetButton to answerButton and 'remove' answerButton
-- (void)setTarget:(id)targetButton withAnswer:(id)answerButton{
-    int targetPosition = [targetButtons indexOfObject:targetButton];
-    int answerPosition = [answerButtons indexOfObject:answerButton];
-    // Find the answer from the answerPosition
-    int value = [[[game answers] objectAtIndex:answerPosition] intValue];
-    [[game userAnswers] replaceObjectAtIndex:targetPosition withObject:[NSNumber numberWithInt:value]];
-    // Remove answer from answerButton
-    [answerButton setTitleColor:[UIColor colorWithWhite:0 alpha:1] forState:UIControlStateNormal];
-    [answerButton setTitle:[NSString stringWithFormat:@""]  forState: UIControlStateNormal];
-    [answerButton setBackgroundImage:nil forState: UIControlStateNormal];
-    // Appear to move the answer onto the target
-    [targetButton setTitle:[NSString stringWithFormat:@"%i", value]  forState: UIControlStateNormal];
-    [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [targetButton setBackgroundImage:[UIImage imageNamed:@"Star Final.png"] forState: UIControlStateNormal];
+- (void)setTarget:(int)targetIndex withAnswer:(int)answerIndex{
+  id targetButton = [targetButtons objectAtIndex:targetIndex];
+  id answerButton = [answerButtons objectAtIndex:answerIndex];
+  int answer = [[[game answers] objectAtIndex:answerIndex] integerValue];
+  [answerButton setCenter:[targetButton center]];
+  [[game userAnswers] replaceObjectAtIndex:targetIndex withObject:[NSNumber numberWithInt:answer]];
 }
 
 // Replace the questionButton currently 'on' targetButton.
-- (void)replaceTarget:(id)targetButton{
-    int targetindex = [targetButtons indexOfObject:targetButton];
-    id userAnswer = [[game userAnswers] objectAtIndex:targetindex];
-    if(userAnswer != [NSNull null]){
-        // Find the original position of the answer currently 'on' the targetButton
-        int originalPosition = [[game answers] indexOfObject:userAnswer];
-        id originalButton = [answerButtons objectAtIndex:originalPosition];
-        [[game userAnswers] replaceObjectAtIndex:targetindex withObject:[NSNull null]]; // Remove from the userAnswers array
-        // Reset answer to it's original button
-        [originalButton setTitle:[NSString stringWithFormat:@"%i", [userAnswer intValue]]  forState: UIControlStateNormal];
-        [originalButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [originalButton setBackgroundImage:[UIImage imageNamed:@"Star Final.png"] forState: UIControlStateNormal];
-        // Reset targetButton to empty style
-        [targetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [targetButton setTitle:[NSString stringWithFormat:@""]  forState: UIControlStateNormal];
-        [targetButton setBackgroundImage:[UIImage imageNamed:@"StarStroke.png"] forState: UIControlStateNormal];
-    }
+- (void)replaceTarget:(int)position{
+  id userAnswer = [[game userAnswers] objectAtIndex:position];
+  
+  if(userAnswer != [NSNull null]){
+    
+    int answerIndex = [[game answers] indexOfObject:userAnswer];
+    id originalPosition = [answerButtonPositions objectAtIndex:answerIndex];
+    id answerButton = [answerButtons objectAtIndex:answerIndex];
+    [answerButton setCenter:[originalPosition CGPointValue]];
+    // Remove from the userAnswers array
+    [[game userAnswers] replaceObjectAtIndex:position withObject:[NSNull null]]; 
+  }
 }
 
 - (void)nextLevel{
@@ -312,6 +304,12 @@
     
     // Set the answerButton text and style
     id answerButton = [answerButtons objectAtIndex:i];
+    if([answerButtonPositions count] > 0){
+      id originalPosition = [answerButtonPositions objectAtIndex:i];
+      if(originalPosition != [NSNull null]){
+        [answerButton setCenter:[originalPosition CGPointValue]];
+      }
+    }
     id answer = [[game answers] objectAtIndex:i];
     [answerButton setTitle:[NSString stringWithFormat:@"%i", [answer intValue]] forState: UIControlStateNormal];
     [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

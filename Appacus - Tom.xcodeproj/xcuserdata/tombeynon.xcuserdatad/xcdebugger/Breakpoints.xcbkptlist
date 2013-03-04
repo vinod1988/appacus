@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Appacus - Tom/ViewController.m"
-         timestampString = "384042574.193796"
+         timestampString = "384048596.143687"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-touchAnswer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Appacus - Tom/ViewController.m"
-         timestampString = "384042574.193796"
+         timestampString = "384048596.143687"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
+         startingLineNumber = "94"
+         endingLineNumber = "94"
          landmarkName = "-releaseAnswer:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Appacus - Tom/ViewController.m"
-         timestampString = "384042574.193796"
+         timestampString = "384048596.143687"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-touchAnswer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,12 +47,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Appacus - Tom/ViewController.m"
-         timestampString = "384042574.193796"
+         timestampString = "384048596.143687"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-touchAnswer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Appacus - Tom/ViewController.m"
+         timestampString = "384048596.143687"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
+         landmarkName = "-releaseAnswer:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

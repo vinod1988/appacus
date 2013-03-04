@@ -40,8 +40,6 @@
 
 -(IBAction)touchUpTarget:(id)sender;
 
--(IBAction)touchDownTarget:(id)sender;
-
 -(IBAction)roundAction:(id)sender;
 
 -(IBAction)touchAnswer:(id)sender;
