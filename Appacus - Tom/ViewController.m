@@ -21,6 +21,7 @@
 @synthesize levelLabel;
 @synthesize scoreLabel;
 @synthesize livesLabel;
+@synthesize timeLabel;
 @synthesize userNotified;
 @synthesize gameLevel;
 @synthesize labels;
@@ -33,13 +34,13 @@
   [levelLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
   [livesLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
   UIFont *newFont = [UIFont fontWithName:@"Architects Daughter" size:30];
-  [answerLabels setValue:newFont forKey:@"font"];
   [questionLabels setValue:newFont forKey:@"font"];
   [answerButtons setValue:newFont forKey:@"font"];
   [targetButtons setValue:newFont forKey:@"font"];
    UIFont *labelsFont = [UIFont fontWithName:@"Architects Daughter" size:20];
   [labels setValue:labelsFont forKey:@"font"];
   [buttons setValue:labelsFont forKey:@"font"];
+  [answerLabels setValue:labelsFont forKey:@"font"];
    
   [super viewDidLoad];
   [self initialise];
@@ -49,7 +50,6 @@
   [self initElementArrays];
   [self resetGame];
 }
-
 
 - (IBAction)touchAnswer:(id)sender
 {
@@ -108,6 +108,9 @@
   }
 }
 
+- (IBAction)touchUpTarget:(id)sender {
+  
+}
 // Place the answer on the target if target is available. Otherwise, reset the question current in target
 - (IBAction)touchDownTarget:(id)sender{
   // Only trigger an action if game is in progress
@@ -118,16 +121,10 @@
   }
 }
 
--(IBAction)touchUpTarget:(id)sender{
-  
-}
-
 - (IBAction)roundAction:(id)sender{
-    
-    if([game numAnswered] == [game numQuestions]){
-      UIButton *checkButton = (UIButton *)sender;
-      
-      if(userNotified){
+      if([game numAnswered] == [game numQuestions]){
+      UIButton *checkButton = (UIButton *)sender;      
+        if(userNotified){
         if([game gameOver]){
           // Button intended to reset game
           [self resetGame];
@@ -145,6 +142,7 @@
         }
         userNotified = false;
       }else{
+
         // Button intended to check answers
         [self checkAnswers];
         if([game gameOver]){
@@ -282,7 +280,6 @@
   game = [[GameController alloc] init];
   [game setUserTimesTable:gameLevel];
   [game setNumQuestions:5];
-  
   [game repopulateGame];
   [self resetView];
 }
@@ -294,7 +291,6 @@
 }
 
 - (void)resetView{
-  
   [levelLabel setText:[NSString stringWithFormat:@"%i",[game userLevel]]];
   [livesLabel setText:[NSString stringWithFormat:@"%i",[game userLives]]];
   [scoreLabel setText:[NSString stringWithFormat:@"%i",[game userScore]]];

@@ -36,6 +36,7 @@
 @property int numQuestions;
 @property int heldAnswer;
 @property int roundScore;
+@property int time;
 @property BOOL gameOver;
 
 -(void)repopulateGame;
@@ -47,5 +48,6 @@
 -(BOOL)levelComplete;
 -(BOOL)roundComplete;
 -(void)updateLives;
+-(void)countDownTimer;
 
 @end

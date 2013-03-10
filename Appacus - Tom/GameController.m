@@ -21,6 +21,7 @@
 @synthesize userScore;
 @synthesize userLives;
 @synthesize gameOver;
+@synthesize time;
 
 - (id)init
 {
@@ -38,7 +39,8 @@
     roundScore = 0;
     userScore = 0;
     userLives = 3;
-    
+    time = 60;
+
     // Load levels
     [levels addObject:[NSArray arrayWithObjects: [NSNumber numberWithInteger:1], [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:5], [NSNumber numberWithInteger:6], [NSNumber numberWithInteger:10], nil]];
     
@@ -71,6 +73,22 @@
         }
     }
     return num;
+}
+
+-(void)countDownTimer {
+  [NSTimer scheduledTimerWithTimeInterval:1
+                                   target:self
+                                 selector:@selector(countDown:)
+                                 userInfo:nil
+                                  repeats:YES];
+}
+
+-(int)countDown:(NSTimer *)timer {
+  if (--time == 0) {
+    [timer invalidate];
+  }
+  NSLog(@"%i", time);
+  return time;
 }
 
 - (int)calculateAnswer:(int)questionIndex{
@@ -129,7 +147,6 @@
         gameOver = true;
     }
 }
-
 
 - (void)generateQuestions{
   // Generate null answers initially

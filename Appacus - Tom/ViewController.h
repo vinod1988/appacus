@@ -26,6 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *livesLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
