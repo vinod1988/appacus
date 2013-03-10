@@ -589,20 +589,10 @@
                                     <action selector="backAction:" destination="2" eventType="touchUpInside" id="LFR-JY-NNW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGx-ET-N5d">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="b3m-DQ-Dge"/>
-                                    <constraint firstAttribute="width" constant="89" id="suf-cm-JfI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WM9-yv-f30" firstAttribute="leading" secondItem="jdb-tn-DgC" secondAttribute="leading" type="default" id="0tt-15-Qzj"/>
-                            <constraint firstItem="yGx-ET-N5d" firstAttribute="top" secondItem="38C-cd-iTv" secondAttribute="top" type="default" id="1lS-ic-YyQ"/>
                             <constraint firstItem="XV1-bN-daW" firstAttribute="leading" secondItem="9Xb-JV-Kms" secondAttribute="leading" type="default" id="1oU-dB-JIM"/>
                             <constraint firstItem="7ua-FG-vgf" firstAttribute="top" secondItem="4Hv-YU-D68" secondAttribute="top" type="default" id="1rf-gA-r55"/>
                             <constraint firstItem="Mew-wq-DPR" firstAttribute="leading" secondItem="I4K-N1-7I6" secondAttribute="leading" type="default" id="22P-VG-Ksk"/>
@@ -610,7 +600,6 @@
                             <constraint firstItem="LcQ-i2-LI6" firstAttribute="trailing" secondItem="CJD-Qw-AZx" secondAttribute="trailing" type="default" id="3BT-nb-9oD"/>
                             <constraint firstItem="GpQ-K5-lig" firstAttribute="trailing" secondItem="kkK-St-OTI" secondAttribute="trailing" type="default" id="3I7-4I-B1Y"/>
                             <constraint firstItem="38C-cd-iTv" firstAttribute="centerX" secondItem="GuO-Ca-bsc" secondAttribute="centerX" type="default" id="3KF-sK-fI1"/>
-                            <constraint firstAttribute="trailing" secondItem="yGx-ET-N5d" secondAttribute="trailing" constant="339" id="3OH-73-pOJ"/>
                             <constraint firstItem="GuO-Ca-bsc" firstAttribute="baseline" secondItem="Aht-dQ-7t7" secondAttribute="baseline" type="default" id="3hd-RS-sFC"/>
                             <constraint firstAttribute="bottom" secondItem="Z7T-E4-2HP" secondAttribute="bottom" constant="137" id="553-Ec-oX6"/>
                             <constraint firstAttribute="trailing" secondItem="GuO-Ca-bsc" secondAttribute="trailing" constant="28" id="5Dg-cc-l3s"/>
@@ -648,7 +637,6 @@
                             <constraint firstItem="04L-1a-ojq" firstAttribute="bottom" secondItem="amM-Wy-hVE" secondAttribute="bottom" type="default" id="OJi-mU-h7p"/>
                             <constraint firstItem="7ua-FG-vgf" firstAttribute="bottom" secondItem="4Hv-YU-D68" secondAttribute="bottom" type="default" id="OVQ-lp-OkU"/>
                             <constraint firstAttribute="bottom" secondItem="Qnd-qk-3kc" secondAttribute="bottom" constant="159" id="QE9-t4-hoN"/>
-                            <constraint firstItem="yGx-ET-N5d" firstAttribute="top" secondItem="b2F-Te-DtL" secondAttribute="top" type="default" id="Qex-nY-Az6"/>
                             <constraint firstItem="WM9-yv-f30" firstAttribute="top" secondItem="XL8-t0-2yT" secondAttribute="top" type="default" id="RG3-gr-p1t"/>
                             <constraint firstItem="04L-1a-ojq" firstAttribute="top" secondItem="amM-Wy-hVE" secondAttribute="top" type="default" id="RbN-ej-FL2"/>
                             <constraint firstAttribute="bottom" secondItem="4Hv-YU-D68" secondAttribute="bottom" constant="16" id="SUM-iS-oIn"/>
@@ -686,6 +674,7 @@
                             <constraint firstItem="VLB-R9-8b6" firstAttribute="trailing" secondItem="jdb-tn-DgC" secondAttribute="trailing" type="default" id="jWx-0h-fLY"/>
                             <constraint firstItem="9Xb-JV-Kms" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="29" id="k3m-G3-5Hj"/>
                             <constraint firstItem="9Xb-JV-Kms" firstAttribute="centerY" secondItem="b2F-Te-DtL" secondAttribute="centerY" type="default" id="kbA-GB-wu4"/>
+                            <constraint firstItem="38C-cd-iTv" firstAttribute="top" secondItem="b2F-Te-DtL" secondAttribute="top" type="default" id="kt4-Jh-F9m"/>
                             <constraint firstAttribute="bottom" secondItem="8gl-XF-moU" secondAttribute="bottom" constant="46" id="mvM-4i-eR9"/>
                             <constraint firstItem="UzY-e8-iJr" firstAttribute="trailing" secondItem="Qnd-qk-3kc" secondAttribute="trailing" type="default" id="ndn-Km-C6G"/>
                             <constraint firstItem="Qnd-qk-3kc" firstAttribute="centerY" secondItem="qSs-fx-Hjs" secondAttribute="centerY" type="default" id="pmd-VO-ngx"/>
@@ -709,7 +698,6 @@
                         <outlet property="levelLabel" destination="ogw-nT-10E" id="z4D-xx-w5a"/>
                         <outlet property="livesLabel" destination="L7Z-zf-KId" id="kJo-TW-fDM"/>
                         <outlet property="scoreLabel" destination="amM-Wy-hVE" id="xBw-Uo-Fgl"/>
-                        <outlet property="timeLabel" destination="yGx-ET-N5d" id="93t-Da-Ua7"/>
                         <outletCollection property="questionLabels" destination="GpQ-K5-lig" id="FNp-dI-IBa"/>
                         <outletCollection property="questionLabels" destination="kkK-St-OTI" id="SLs-gC-8UZ"/>
                         <outletCollection property="questionLabels" destination="UzY-e8-iJr" id="c4l-kD-Rxc"/>
