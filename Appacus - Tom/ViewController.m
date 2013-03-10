@@ -56,6 +56,7 @@
     // Only trigger an action if game is in progress
     if(![game roundComplete]){
         UIButton *button = (UIButton *)sender;
+      [button bringSubviewToFront:self.view];
       // Get button position
       int position = [answerButtons indexOfObject:button];
         
@@ -101,6 +102,9 @@
     if([[game userAnswers] objectAtIndex:droppedTarget] == (id)[NSNull null]){
       // Set that targetButton to the answer and remove the answerButton
       [self setTarget:droppedTarget withAnswer:position];
+    }else{
+      [self replaceTarget:droppedTarget];
+      [self setTarget:droppedTarget withAnswer:position];
     }
   }else{
     id originalPosition = [answerButtonPositions objectAtIndex:position];
@@ -122,9 +126,11 @@
 }
 
 - (IBAction)roundAction:(id)sender{
-      if([game numAnswered] == [game numQuestions]){
-      UIButton *checkButton = (UIButton *)sender;      
-        if(userNotified){
+
+    if([game numAnswered] == [game numQuestions]){
+      UIButton *checkButton = (UIButton *)sender;
+      
+      if(userNotified){
         if([game gameOver]){
           // Button intended to reset game
           [self resetGame];
@@ -169,6 +175,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+ 
 }
 
 - (IBAction)backAction:(id)sender {
