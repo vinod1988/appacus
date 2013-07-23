@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "GameController.h"
 
 
 @interface ViewController : UIViewController
 
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *questionLabels;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *questionButtons;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *targetButtons;
 
@@ -51,6 +52,8 @@
 -(IBAction)touchAnswer:(id)sender;
 
 -(IBAction)backAction:(id)sender;
+
+- (IBAction)hintAction:(id)sender;
 
 @end
 

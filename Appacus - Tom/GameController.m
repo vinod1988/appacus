@@ -2,7 +2,7 @@
 //  GameController.m
 //  Appacus - Tom
 //
-//  Created by Tom Beynon on 29/12/2012.
+//  Created by Matthew Nieuwenhuys on 29/12/2012.
 //  Copyright (c) 2012 Matthew Nieuwenhuys. All rights reserved.
 //
 
@@ -33,7 +33,7 @@
     userAnswers = [[NSMutableArray alloc] init];
     levels = [[NSMutableArray alloc] init];
     userLevel = 1;
-    userTimesTable = 2;
+    userTimesTable = 0;
     numQuestions = 0;
     heldAnswer = 0;
     roundScore = 0;
@@ -168,22 +168,22 @@
     // Generates a question with a unique answer and assigns to questions array
     int questionVal = 0;
     while (questionVal == 0 || [questions containsObject:[NSNumber numberWithInt:questionVal]]) {
-      int randomIndex = arc4random() % [questionRange count]; // between 0 and count-1
+      int randomIndex = arc4random() % [questionRange count];
       questionVal = [[questionRange objectAtIndex:randomIndex] intValue];
     }
     [questions addObject:[NSNumber numberWithInt:questionVal]];
     
     int answerVal = userTimesTable*questionVal;
-    int answerPos = arc4random() % 5; // between 0 and 4;
-    while([answers objectAtIndex:answerPos] != (id)[NSNull null] || answerPos == i){
-      answerPos = arc4random() % 5; // between 0 and 4
+    int answerPosition = arc4random() % 5; // between 0 and 4;
+    while([answers objectAtIndex:answerPosition] != (id)[NSNull null] || answerPosition == i){
+      answerPosition = arc4random() % 5; // between 0 and 4
       // If we're generating the last answer position, and we've found a free position, it must be the only one available
-      if(i >= numQuestions-1 && [answers objectAtIndex:answerPos] == (id)[NSNull null]){
+      if(i >= numQuestions-1 && [answers objectAtIndex:answerPosition] == (id)[NSNull null]){
         break;
       }
     }
     // Add answer to answers array at answerPos
-    [answers replaceObjectAtIndex:answerPos withObject:[NSNumber numberWithInt:answerVal]];
+    [answers replaceObjectAtIndex:answerPosition withObject:[NSNumber numberWithInt:answerVal]];
   }
 }
 

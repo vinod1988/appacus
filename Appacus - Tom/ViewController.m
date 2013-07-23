@@ -13,7 +13,7 @@
 @end
 
 @implementation ViewController
-@synthesize questionLabels;
+@synthesize questionButtons;
 @synthesize targetButtons;
 @synthesize answerLabels;
 @synthesize answerButtons;
@@ -30,17 +30,17 @@
 // Run once scene (viewController) has loaded
 - (void)viewDidLoad
 {
-  [scoreLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
-  [levelLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
-  [livesLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:34]];
+  [scoreLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:40]];
+  [levelLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:40]];
+  [livesLabel setFont:[UIFont fontWithName:@"Architects Daughter" size:40]];
   UIFont *newFont = [UIFont fontWithName:@"Architects Daughter" size:30];
-  [questionLabels setValue:newFont forKey:@"font"];
   [answerButtons setValue:newFont forKey:@"font"];
   [targetButtons setValue:newFont forKey:@"font"];
    UIFont *labelsFont = [UIFont fontWithName:@"Architects Daughter" size:20];
-  [labels setValue:labelsFont forKey:@"font"];
+  [labels setValue:newFont forKey:@"font"];
   [buttons setValue:labelsFont forKey:@"font"];
   [answerLabels setValue:labelsFont forKey:@"font"];
+  [questionButtons setValue:newFont forKey:@"font"];
    
   [super viewDidLoad];
   [self initialise];
@@ -49,6 +49,49 @@
 - (void)initialise{
   [self initElementArrays];
   [self resetGame];
+}
+
+
+- (IBAction)hintAction:(id)sender {
+  NSString *filepath;
+  UIButton *button = (UIButton *)sender;
+  int hintPosition = [questionButtons indexOfObject:button];
+  id question = [[game questions] objectAtIndex:hintPosition];
+  int questionValue = [question intValue];
+  if ([game userTimesTable] == 10 && questionValue == 1){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x1" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 2){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x2" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 3){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x3" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 4){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x4" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 5){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x5" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 6){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x6" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 7){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x7" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 8){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x8" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 9){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x9" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 10){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x10" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 11){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x11" ofType:@"mp4"];
+  }else if([game userTimesTable] == 10 && questionValue == 12){
+    filepath = [[NSBundle mainBundle] pathForResource:@"10x12" ofType:@"mp4"];
+  }
+  NSURL *fileURL = [NSURL fileURLWithPath:filepath];
+  MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:fileURL];
+  [[player moviePlayer] prepareToPlay];
+  [[player moviePlayer] setFullscreen:(YES) animated:(YES)]; 
+  [[player moviePlayer] setShouldAutoplay:YES];
+  [[player moviePlayer] setControlStyle:2];
+  [[player moviePlayer] setAllowsAirPlay:YES];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+  [self presentMoviePlayerViewControllerAnimated:player];
 }
 
 - (IBAction)touchAnswer:(id)sender
@@ -134,17 +177,17 @@
         if([game gameOver]){
           // Button intended to reset game
           [self resetGame];
-          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+          [checkButton setTitle:[NSString stringWithFormat:@"Action"] forState:UIControlStateNormal];
         }else if([game gameComplete]){
           [self nextLevel];
-          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+          [checkButton setTitle:[NSString stringWithFormat:@"Action"] forState:UIControlStateNormal];
         }else if([game levelComplete]){
           [self nextLevel];
-          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+          [checkButton setTitle:[NSString stringWithFormat:@"Action"] forState:UIControlStateNormal];
         }else if([game roundComplete]){
           // Button intended to retry round
           [self resetRound];
-          [checkButton setTitle:[NSString stringWithFormat:@"Check"] forState:UIControlStateNormal];
+          [checkButton setTitle:[NSString stringWithFormat:@"Action"] forState:UIControlStateNormal];
         }
         userNotified = false;
       }else{
@@ -154,15 +197,15 @@
         if([game gameOver]){
           // Warn of game over and update button to reset
           [self notifyGameOver];
-          [checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
+          //[checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
         }else if([game levelComplete]){
           // Continue to the next level!
           [self notifyLevelComplete];
-          [checkButton setTitle:[NSString stringWithFormat:@"Next Level"] forState:UIControlStateNormal];
+          //[checkButton setTitle:[NSString stringWithFormat:@"Next Level"] forState:UIControlStateNormal];
         }else{
           // Notify score and allow to retry round
           [self notifyFailure];
-          [checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
+          //[checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
         }
         userNotified = true;
       }
@@ -224,32 +267,32 @@
 
 - (void)notifyLevelComplete{
   
-  id alertMessage = [NSString stringWithFormat:@"You answered every question correctly"];
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well done!"
+  id alertMessage = [NSString stringWithFormat:@"You gained 5 stars!                                            Level %i Complete!", [game userLevel]];
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Well Done!"
                                                   message:alertMessage
                                                  delegate:nil
-                                        cancelButtonTitle:@"OK"
+                                        cancelButtonTitle:@"Next Level"
                                         otherButtonTitles:nil];
   [alert show];
 }
 
 - (void)notifyFailure{
   
-    id alertMessage = [NSString stringWithFormat:@"You scored %i out of %i", [game roundScore], [game numQuestions]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try again"
+    id alertMessage = [NSString stringWithFormat:@"You got %i out of %i stars", [game roundScore], [game numQuestions]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Lost a life!"
                                                     message:alertMessage
                                                    delegate:nil
-                                          cancelButtonTitle:@"OK"
+                                          cancelButtonTitle:@"Try Again"
                                           otherButtonTitles:nil];
     [alert show];
 }
 
 - (void)notifyGameOver{
-  id alertMessage = [NSString stringWithFormat:@"You scored %i", [game userScore]];
+  id alertMessage = [NSString stringWithFormat:@"You lost all your lives!                               You got %i stars and got to level %i!", [game userScore], [game userLevel]];
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
                                                   message:alertMessage
                                                  delegate:nil
-                                        cancelButtonTitle:@"OK"
+                                        cancelButtonTitle:@"Start Again"
                                         otherButtonTitles:nil];
   [alert show];
 }
@@ -305,9 +348,11 @@
   // Set the labels from the answer and question arrays
   for(int i=0;i<[game numQuestions];i++) {
     // Set questionLabel text
-    id questionLabel = [questionLabels objectAtIndex:i];
+    id questionButton = [questionButtons objectAtIndex:i];
     id question = [[game questions] objectAtIndex:i];
-    [questionLabel setText:[NSString stringWithFormat:@"%i x %i = ", [game userTimesTable], [question intValue]]];
+    [questionButton setTitle:[NSString stringWithFormat:@"%i x %i =", [game userTimesTable], [question intValue]] forState:UIControlStateNormal];
+    [questionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [questionButton setBackgroundImage:[UIImage imageNamed:@"QuestionBox.png"] forState: UIControlStateNormal];
     
     // Reset target button style
     id targetButton = [targetButtons objectAtIndex:i];
@@ -329,19 +374,18 @@
     }
     id answer = [[game answers] objectAtIndex:i];
     [answerButton setTitle:[NSString stringWithFormat:@"%i", [answer intValue]] forState: UIControlStateNormal];
-    [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [answerButton setBackgroundImage:[UIImage imageNamed:@"Star Final.png"] forState: UIControlStateNormal];
+    [answerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   }
 }
 
 - (void)initElementArrays{
-  // Order questionLabels array by tag
-  self.questionLabels = [self.questionLabels sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
-      if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
-      else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
-      else return NSOrderedSame;
-  }];
   
+  self.questionButtons = [self.questionButtons sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
+    if ([label1 tag] < [label2 tag]) return NSOrderedAscending;
+    else if ([label1 tag] > [label2 tag]) return NSOrderedDescending;
+    else return NSOrderedSame;
+  }];
   
   // Order targetButtons array by tag
   self.targetButtons = [self.targetButtons sortedArrayUsingComparator:^NSComparisonResult(id label1, id label2) {
