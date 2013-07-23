@@ -158,7 +158,10 @@
     }
   }else{
     id originalPosition = [answerButtonPositions objectAtIndex:position];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.25];
     [button setCenter:[originalPosition CGPointValue]];
+    [UIView commitAnimations];
   }
 }
 
