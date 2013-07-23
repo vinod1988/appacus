@@ -145,6 +145,13 @@
     if([[game userAnswers] objectAtIndex:droppedTarget] == (id)[NSNull null]){
       // Set that targetButton to the answer and remove the answerButton
       [self setTarget:droppedTarget withAnswer:position];
+      
+      NSLog(@"answered: %i", [game numAnswered]);
+      NSLog(@"questions: %i", [game numQuestions]);
+      if([game numAnswered] == [game numQuestions]){
+        [self completeRound];
+      }
+      
     }else{
       [self replaceTarget:droppedTarget];
       [self setTarget:droppedTarget withAnswer:position];
@@ -174,6 +181,10 @@
       UIButton *checkButton = (UIButton *)sender;
       
       if(userNotified){
+        //
+        // This should be moved to the UIAlertView action
+        // See here: http://stackoverflow.com/questions/5763581/uialertview-button-action
+        //
         if([game gameOver]){
           // Button intended to reset game
           [self resetGame];
@@ -190,24 +201,6 @@
           [checkButton setTitle:[NSString stringWithFormat:@"Action"] forState:UIControlStateNormal];
         }
         userNotified = false;
-      }else{
-
-        // Button intended to check answers
-        [self checkAnswers];
-        if([game gameOver]){
-          // Warn of game over and update button to reset
-          [self notifyGameOver];
-          //[checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
-        }else if([game levelComplete]){
-          // Continue to the next level!
-          [self notifyLevelComplete];
-          //[checkButton setTitle:[NSString stringWithFormat:@"Next Level"] forState:UIControlStateNormal];
-        }else{
-          // Notify score and allow to retry round
-          [self notifyFailure];
-          //[checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
-        }
-        userNotified = true;
       }
       
     }else{
@@ -223,6 +216,25 @@
 
 - (IBAction)backAction:(id)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)completeRound{
+  // Button intended to check answers
+  [self checkAnswers];
+  if([game gameOver]){
+    // Warn of game over and update button to reset
+    [self notifyGameOver];
+    //[checkButton setTitle:[NSString stringWithFormat:@"Start Again"] forState:UIControlStateNormal];
+  }else if([game levelComplete]){
+    // Continue to the next level!
+    [self notifyLevelComplete];
+    //[checkButton setTitle:[NSString stringWithFormat:@"Next Level"] forState:UIControlStateNormal];
+  }else{
+    // Notify score and allow to retry round
+    [self notifyFailure];
+    //[checkButton setTitle:[NSString stringWithFormat:@"Try Again"] forState:UIControlStateNormal];
+  }
+  userNotified = true;
 }
 
 - (void)checkAnswers{
