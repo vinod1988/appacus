@@ -315,7 +315,10 @@
     int answerIndex = [[game answers] indexOfObject:userAnswer];
     id originalPosition = [answerButtonPositions objectAtIndex:answerIndex];
     id answerButton = [answerButtons objectAtIndex:answerIndex];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.25];
     [answerButton setCenter:[originalPosition CGPointValue]];
+    [UIView commitAnimations];
     // Remove from the userAnswers array
     [[game userAnswers] replaceObjectAtIndex:position withObject:[NSNull null]]; 
   }
