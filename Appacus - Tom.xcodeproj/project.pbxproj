@@ -236,6 +236,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Matthew Nieuwenhuys";
+				TargetAttributes = {
+					48006917168DD7B000250AB8 = {
+						DevelopmentTeam = ZLBS8U39YE;
+					};
+				};
 			};
 			buildConfigurationList = 48006912168DD7B000250AB8 /* Build configuration list for PBXProject "Appacus - Tom" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -388,11 +393,14 @@
 		4800693D168DD7B000250AB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appacus - Tom/Appacus - Tom-Prefix.pch";
 				INFOPLIST_FILE = "Appacus - Tom/Appacus - Tom-Info.plist";
 				PRODUCT_NAME = Appacus;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -400,11 +408,14 @@
 		4800693E168DD7B000250AB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appacus - Tom/Appacus - Tom-Prefix.pch";
 				INFOPLIST_FILE = "Appacus - Tom/Appacus - Tom-Info.plist";
 				PRODUCT_NAME = Appacus;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
